@@ -1,4 +1,4 @@
-import { ScrollView, StyleSheet, Text, View , Image, TouchableOpacity } from 'react-native'
+import { ScrollView, StyleSheet, Text, View , Image, TouchableOpacity, StatusBar } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
@@ -8,10 +8,11 @@ import {COLORS} from  './Utils/Colors'
 
 import { images } from '../../constants/images'
 
-const Onboarding = () => {
+const Onboarding = ({navigation}) => {
   return (
     <SafeAreaView style={styles.container}  >
-      <Text style={{fontFamily:"Poppins-Black"}} >Onboarding</Text>
+      {/* <Text style={{fontFamily:"Poppins-Black"}} >Onboarding</Text> */}
+      <StatusBar  />
       <ScrollView >
 
         {/* for centering everything in the screen */}
@@ -25,12 +26,20 @@ const Onboarding = () => {
           />
         </View>
 
-        <Text style={{color:'white'}}>Discover Endless </Text>
-        <Text style={{color:'white'}}>Possibilities with Aora</Text>
-        <Text style={{color:'white'}}>Where Creativity Meets Innovation: Embark on </Text>
-        <Text style={{color:'white'}}>a Journey of Limitless Exploration with Aora</Text>
+<View style={{width: 333, height: 73, justifyContent:'center', alignItems:'center'}}>
+<Text style={{color:'white', fontWeight: '600', fontSize: 30, lineHeight: 36}}>Discover Endless </Text>
+        <Text style={{color:'white', fontWeight: '600', fontSize: 30, lineHeight: 36}}>Possibilities with 
+        <Text style={{fontWeight: '600', fontSize: 30 , lineHeight: 36 , fontFamily:'Poppins-Medium' , color:'#FF8E01' }}> Aora</Text></Text>
+</View>
+        
+<View style={{width: 325, height: 44, justifyContent:'center', alignItems:'center' , top: 10 ,  }}>      
+        <Text style={{color:'#CDCDE0' , fontWeight: '400', fontSize: 14, lineHeight: 22.4,}}>Where Creativity Meets Innovation: Embark on </Text>
+        <Text style={{color:'#CDCDE0' , fontWeight: '400', fontSize: 14, lineHeight: 22.4,}}>a Journey of Limitless Exploration with Aora</Text>
+        </View>
 
-<TouchableOpacity style={styles.btn}>
+<TouchableOpacity 
+onPress={ () => navigation.navigate("SignUp")}
+style={styles.btn}>
   <Text style={{color:'white'}}>Continue with Email</Text>
 </TouchableOpacity>
         </View>
@@ -48,12 +57,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.PRIMARY,
     // justifyContent:'center',
     // alignItems:'center',
+    // padding: 20,
   },
   subContainer:{
     flex: 1,
     justifyContent:'center',
     alignItems:'center',
-    backgroundColor:'green',
+    // backgroundColor:'green',
   },
   logo:{
     height: 84,
@@ -63,7 +73,8 @@ const styles = StyleSheet.create({
   },
   cards:{
     height: 240,
-    width: 140,
+    width: 240,
+
   },
   btn:{
     width: 327,
@@ -71,8 +82,9 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 8,
     marginTop: 10,
-    backgroundColor:'lightgreen',
+    backgroundColor:'#FF8C00',
     justifyContent:'center',
-    alignItems:'center'
+    alignItems:'center',
+    marginTop: 54,
   }
 })

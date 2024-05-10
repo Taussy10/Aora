@@ -11,6 +11,8 @@ import Home from '../Screens/Home'
 import Bookmarked from '../Screens/Bookmarked'
 import Profile from '../Screens/Profile'
 import Create from '../Screens/Create'
+import SignUp from '../Screens/Auth/SignUp';
+import SignIn from '../Screens/Auth/SignIn';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator()
@@ -34,6 +36,8 @@ const Routes = () => {
     <Stack.Navigator initialRouteName='Onboarding' screenOptions={{headerShown:false}}>
 
     <Stack.Screen name='Onboarding' component={Onboarding} />
+    <Stack.Screen name='SignUp' component={SignUp} />
+    <Stack.Screen name='SignIn' component={SignIn} />
     <Stack.Screen name='TabsRoute' component={TabsRoute} />
     </Stack.Navigator>
 
