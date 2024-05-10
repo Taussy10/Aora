@@ -33,7 +33,7 @@ const Routes = () => {
       });
   
   return (
-    <Stack.Navigator initialRouteName='Onboarding' screenOptions={{headerShown:false}}>
+    <Stack.Navigator initialRouteName='TabsRoute' screenOptions={{headerShown:false}}>
 
     <Stack.Screen name='Onboarding' component={Onboarding} />
     <Stack.Screen name='SignUp' component={SignUp} />

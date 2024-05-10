@@ -15,7 +15,7 @@ export const appwriteConfig ={
 const client = new Client();
 
 client
-    .setEndpoint('http://localhost/v1') // Your Appwrite Endpoint
-    .setProject('455x34dfkj') // Your project ID
-    .setPlatform('com.example.myappwriteapp') // Your application ID or bundle ID.
+    .setEndpoint(appwriteConfig.endpoint) // Your Appwrite Endpoint
+    .setProject(appwriteConfig.projectId) // Your project ID
+    .setPlatform(appwriteConfig.platform) // Your application ID or bundle ID.
 ;
