@@ -1,99 +1,80 @@
-import { FlatList, FlatListComponent, StyleSheet, Text, View , Image, TextInput } from 'react-native'
-import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
-// import Colors from '../../'
-// import colors from '../'
-import {COLORS } from './Utils/Colors'
-import SearchInput from '../Components/SearchInput'
-
+// Home.js
+import { FlatList, StyleSheet, Text, View, Image ,  } from 'react-native';
+import React from 'react';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { COLORS } from './Utils/Colors';
+import SearchInput from '../Components/SearchInput';
+import Trending from '../Components/Trending'; // Correct import path
 
 const Home = () => {
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList 
-  data={[{ id: 1 }]}
-  keyExtractor={(item) => item.id.toString()}
-  renderItem={({ item }) => (
-    <Text>{item.id}</Text>
-  )}
+      <FlatList
+        data={[{ id: 1 }]}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={({ item }) => <Text>{item.id}</Text>}
+        ListHeaderComponent={() => (
+          <View style={styles.subContainerContainer}>
+          <View style={styles.headerContainer}>
+            <View style={styles.header}>
+              <View style={{ flexDirection: 'column' }}>
+                <Text style={styles.headerText}>Welcome Back</Text>
+                <Text style={styles.headerText}>Tausif</Text>
+              </View>
+              <Image
+                source={require("../../assets/images/logo-small.png")}
+                style={styles.logo}
+              />
+            </View>
 
- ListHeaderComponent={() =>(
-<View style={styles.headerContainer}>
+            <SearchInput />
+            </View>
+            <Text style={{color:'white'}}>Trending Videos</Text>
 
-  <View style={styles.header}>
-
-<View style={{flexDirection:'column'}}>
-<Text style={{fontWeight: '500' , fontFamily:'Poppins-Regular' , fontSize: 14 , lineHeight: 20.3 , color: '#CDCDE0'}}>Welcome Back</Text>
-<Text style={{fontWeight: '500' , fontFamily:'Poppins-Regular' , fontSize: 24 , lineHeight: 32.4 , color: '#ffffff'}}>Tausif</Text>
-</View>
-
-
-<Image source={require("../../assets/images/logo-small.png")}
-style={styles.logo}
-/>
-</View>
-
-
-
-{/* <View style={styles.searchContainer}> */}
-
-{/* For the serchInput */}
-<SearchInput />
-
-
-<View style={{ height: 1000, paddingTop: 20 , paddingBottom: 40, backgroundColor: 'lightgreen'}}>
-   <Text style={{fontWeight: '400', fontSize: 14 , lineHeight: 19.6,
- color:'#CDCDE0'
-
-    }}> Trending Videos </Text>
-</View>
-
- 
-
-
-
-</View>
-
-// </View >
-
-
-
-
- ) 
- }
- />
+            {/* Use the Trending component */}
+            <Trending posts={[{ id: 1 }, { id: 2 }, { id: 3 }]} />
+            {/* <Trending /> */}
+        
+          </View>
+        )}
+      />
     </SafeAreaView>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
+  container: {
+    flex: 1,
     backgroundColor: COLORS.PRIMARY,
     padding: 10,
   },
-
-
-
-
-  headerContainer:{
+  subContainerContainer: {
+    // 130
+    // height: 100,
+    width: 327,
+    backgroundColor:'white',
+    flex: 1,
+  },
+  headerContainer: {
+    // 130
     height: 130,
     width: 327,
+    backgroundColor:'green',
+    flex: 1,
   },
-  header:{
-flexDirection:'row',
-justifyContent:  'space-between' ,
-width: 325,
-height: 52,
-marginBottom: 10,
- },
- logo:{
- width: 30.08,
- height: 34.21,
- },
+  header: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 325,
+    height: 52,
+    marginBottom: 10,
+  },
+  logo: {
+    width: 30.08,
+    height: 34.21,
+  },
+});
 
 
-
-})

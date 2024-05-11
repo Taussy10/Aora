@@ -13,7 +13,7 @@ import Profile from '../Screens/Profile'
 import Create from '../Screens/Create'
 import SignUp from '../Screens/Auth/SignUp';
 import SignIn from '../Screens/Auth/SignIn';
-import Test from '../Test';
+// import Test from '../Test';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator()
@@ -34,13 +34,13 @@ const Routes = () => {
       });
   
   return (
-    <Stack.Navigator initialRouteName='Test' screenOptions={{headerShown:false}}>
+    <Stack.Navigator initialRouteName='TabsRoute' screenOptions={{headerShown:false}}>
 
     <Stack.Screen name='Onboarding' component={Onboarding} />
     <Stack.Screen name='SignUp' component={SignUp} />
     <Stack.Screen name='SignIn' component={SignIn} />
     <Stack.Screen name='TabsRoute' component={TabsRoute} />
-    <Stack.Screen name='Test' component={Test} />
+    {/* <Stack.Screen name='Test' component={Test} /> */}
     </Stack.Navigator>
 
   )
