@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View , TextInput , Image ,  } from 'react-native'
+import { StyleSheet, Text, View , TextInput , Image , TouchableOpacity  } from 'react-native'
 import React from 'react'
 
 const SearchInput = () => {
@@ -13,14 +13,14 @@ const SearchInput = () => {
     />
   
   
-  <View style={{height: 20 , width: 20}}>
+  <TouchableOpacity style={{height: 20 , width: 20}}>
   
   <Image source={require("../../assets/icons/search.png")}
-  style={{width: 15.42 , height: 15.42 , }}
+  style={{width: 15.42 , height: 15.42 ,   }}
   />
   
   
-  </View> 
+  </TouchableOpacity> 
   </View> 
   )
 }

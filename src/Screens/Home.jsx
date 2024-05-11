@@ -41,7 +41,12 @@ style={styles.logo}
 <SearchInput />
 
 
+<View style={{ height: 1000, paddingTop: 20 , paddingBottom: 40, backgroundColor: 'lightgreen'}}>
+   <Text style={{fontWeight: '400', fontSize: 14 , lineHeight: 19.6,
+ color:'#CDCDE0'
 
+    }}> Trending Videos </Text>
+</View>
 
  
 
