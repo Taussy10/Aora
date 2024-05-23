@@ -3,6 +3,7 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS } from '../Utils/Colors'
 
+import CustomButton from '../../Components/CustomButton'
 
 const SignUp = ({navigation}) => {
   return (
@@ -52,11 +53,20 @@ const SignUp = ({navigation}) => {
 
 </View>
 
-<TouchableOpacity 
+{/* <TouchableOpacity 
 onPress={ () => navigation.navigate("TabsRoute")}
 style={styles.btn}>
   <Text style={{color:'white'}}>Sign Up</Text>
-</TouchableOpacity>
+</TouchableOpacity> */}
+
+<CustomButton 
+title= "Sign Up"
+handlePress={() => navigation.navigate("TabsRoute")}
+containerStyles={styles.btn}
+
+/>
+
+
 
 
 <Text style={{fontWeight:'400', fontSize: 14, lineHeight: 20.3,color:'white', textAlign:'center'}}>
@@ -120,6 +130,7 @@ const styles = StyleSheet.create({
   //  color: '#CDCDE0'
   //  color: 'white',
   elevation: 10,
+  color:'#CDCDE0'
   },
   btn:{
     width: 327,

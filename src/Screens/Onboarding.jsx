@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import {COLORS} from  './Utils/Colors'
 
 import { images } from '../../constants/images'
+import CustomButton from '../Components/CustomButton'
 
 const Onboarding = ({navigation}) => {
   return (
@@ -37,11 +38,19 @@ const Onboarding = ({navigation}) => {
         <Text style={{color:'#CDCDE0' , fontWeight: '400', fontSize: 14, lineHeight: 22.4,}}>a Journey of Limitless Exploration with Aora</Text>
         </View>
 
-<TouchableOpacity 
+<CustomButton 
+title= "Continue with Email"
+handlePress={() => navigation.navigate("SignUp")}
+containerStyles={styles.btn}
+
+/>
+
+{/* <TouchableOpacity 
 onPress={ () => navigation.navigate("SignUp")}
 style={styles.btn}>
   <Text style={{color:'white'}}>Continue with Email</Text>
-</TouchableOpacity>
+</TouchableOpacity> */}
+
         </View>
 
       </ScrollView>
@@ -83,6 +92,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     marginTop: 10,
     backgroundColor:'#FF8C00',
+    // backgroundColor:'green',
     justifyContent:'center',
     alignItems:'center',
     marginTop: 54,

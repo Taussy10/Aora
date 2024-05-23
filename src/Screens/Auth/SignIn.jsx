@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     backgroundColor:'#1E1E2D',
    gap: 10,
   //  color: '#CDCDE0'
-  //  color: 'white',
+   color:'#CDCDE0',
   elevation: 10,
   },
   btn:{
