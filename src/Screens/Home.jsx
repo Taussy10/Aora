@@ -1,5 +1,9 @@
 // Home.js
-import { FlatList, StyleSheet, Text, View, Image, ActivityIndicator , RefreshControl  } from 'react-native';
+import { FlatList, StyleSheet, Text, View, Image, ActivityIndicator ,
+   RefreshControl , StatusBar,  
+   TouchableOpacity,
+   Button,
+   Alert} from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from './Utils/Colors';
@@ -8,27 +12,13 @@ import Trending from '../Components/Trending'; // Correct import path
 import EmptyState from '../Components/EmptyState';
 import { useState , useEffect } from 'react';
 import { getAllposts } from './Utils/appwrite';
+import useApprite from './Utils/useAppwrite';
 
 const Home = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const {data:posts } =  useApprite(getAllposts) ;
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const fetchedPosts = await getAllposts();
-        setPosts(fetchedPosts);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching posts:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchData();
-  }, []); // Empty dependency array to run effect only once on component mount
-
+  console.log(posts);
   const onRefresh = async () => {
     setRefreshing(true);
     try {
@@ -43,14 +33,18 @@ const Home = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <FlatList
-        data={[{ id: 1},{ id: 2},{ id: 3},]}
+        data={posts}
         // data={[]}
-        keyExtractor={(item) => item.id.toString()}
+        // keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => 
         
-        <Text style={{color:'white'}}>{item.id}</Text>}
-
+        
+        <View>
+<Text style={{color:'white'}}>{item.url}</Text>
+        </View>
+      }
         ListHeaderComponent={() => (
           <View style={styles.subContainerContainer}>
           <View style={styles.headerContainer}>
@@ -92,6 +86,8 @@ const Home = ({ navigation }) => {
         )}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       />
+
+
     </SafeAreaView>
   );
 };
