@@ -6,12 +6,16 @@ const Trending = ({posts}) => { // Remove the destructuring
   return (
     <FlatList 
     data={posts}
-    keyExtractor={({item})=> item.$id}
+    // keyExtractor={item=> item.$id}
+    keyExtractor={item=> item.id}
     renderItem={({item}) =>(
         <View>
             <Text>{item.id}</Text>
+            {/* <Text>{item.id}</Text> */}
         </View>
     ) }
+
+    horizontal
     />
     // <View style={styles.container}>
     //   <Text style={{ color: 'green' }}>Hello</Text>

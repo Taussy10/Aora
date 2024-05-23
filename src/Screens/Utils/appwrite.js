@@ -1,4 +1,4 @@
-import { Client } from 'react-native-appwrite';
+import { Client , Databases , Query  } from 'react-native-appwrite';
 
 export const appwriteConfig ={
     endpoint: "https://cloud.appwrite.io/v1",
@@ -10,12 +10,32 @@ export const appwriteConfig ={
     storageId: "663e26db000b926dfbb7",
 }
 
+// destructure the data
+const {
+endpoint , platform , projectId , databaseId , userCollectionId , videosCollectionId , storageId
+} = appwriteConfig
 
 // Init your React Native SDK
 const client = new Client();
+const databases = new Databases(client);
+
+
 
 client
-    .setEndpoint(appwriteConfig.endpoint) // Your Appwrite Endpoint
-    .setProject(appwriteConfig.projectId) // Your project ID
-    .setPlatform(appwriteConfig.platform) // Your application ID or bundle ID.
+    .setEndpoint(endpoint) // Your Appwrite Endpoint
+    .setProject(projectId) // Your project ID
+    .setPlatform(platform) // Your application ID or bundle ID.
 ;
+
+export const getAllposts = async () => {
+    try {
+        const posts = await databases.listDocuments(
+            databaseId,
+             videosCollectionId,);
+             return posts.documents
+    } catch (error) {
+        throw new Error(error);
+    }    
+
+}
+

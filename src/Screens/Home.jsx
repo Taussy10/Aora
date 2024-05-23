@@ -1,26 +1,64 @@
 // Home.js
-import { FlatList, StyleSheet, Text, View, Image ,  } from 'react-native';
+import { FlatList, StyleSheet, Text, View, Image, ActivityIndicator , RefreshControl  } from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { COLORS } from './Utils/Colors';
 import SearchInput from '../Components/SearchInput';
 import Trending from '../Components/Trending'; // Correct import path
+import EmptyState from '../Components/EmptyState';
+import { useState , useEffect } from 'react';
+import { getAllposts } from './Utils/appwrite';
 
-const Home = () => {
+const Home = ({ navigation }) => {
+  const [refreshing, setRefreshing] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const fetchedPosts = await getAllposts();
+        setPosts(fetchedPosts);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []); // Empty dependency array to run effect only once on component mount
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    try {
+      const fetchedPosts = await getAllposts();
+      setPosts(fetchedPosts);
+    } catch (error) {
+      console.error('Error refreshing posts:', error);
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={[{ id: 1 }]}
+        data={[{ id: 1},{ id: 2},{ id: 3},]}
+        // data={[]}
         keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => <Text>{item.id}</Text>}
+        renderItem={({ item }) => 
+        
+        <Text style={{color:'white'}}>{item.id}</Text>}
+
         ListHeaderComponent={() => (
           <View style={styles.subContainerContainer}>
           <View style={styles.headerContainer}>
             <View style={styles.header}>
-              <View style={{ flexDirection: 'column' }}>
-                <Text style={styles.headerText}>Welcome Back</Text>
-                <Text style={styles.headerText}>Tausif</Text>
-              </View>
+            <View style={{flexDirection:'column'}}>
+<Text style={{fontWeight: '500' , fontFamily:'Poppins-Regular' , fontSize: 14 , lineHeight: 20.3 , color: '#CDCDE0'}}>Welcome Back</Text>
+<Text style={{fontWeight: '500' , fontFamily:'Poppins-Regular' , fontSize: 24 , lineHeight: 32.4 , color: '#ffffff'}}>Tausif</Text>
+</View>
               <Image
                 source={require("../../assets/images/logo-small.png")}
                 style={styles.logo}
@@ -37,6 +75,22 @@ const Home = () => {
         
           </View>
         )}
+
+        // if text is emptpy it will show this
+        // You you have to pass navigation to component
+        //  from Parent componet otherwise you won't be able to use
+        ListEmptyComponent={()=> (
+    
+          // <Text style={{color:'white'}}>Empty</Text>
+          <EmptyState 
+          title="Be the first one to upload a video"
+
+          subtitle="No Videos Found"
+          navigation={navigation}
+
+          />
+        )}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
       />
     </SafeAreaView>
   );
