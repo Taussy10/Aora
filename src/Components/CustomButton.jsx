@@ -51,6 +51,5 @@ const styles = StyleSheet.create({
     backgroundColor:'#FF8C00',
     justifyContent:'center',
     alignItems:'center',
-    marginTop: 54,
   }
 })

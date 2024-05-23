@@ -2,7 +2,7 @@ import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS } from '../Utils/Colors'
-
+import CustomButton from '../../Components/CustomButton'
 
 const SignUp = ({navigation}) => {
   return (
@@ -44,11 +44,20 @@ const SignUp = ({navigation}) => {
 
 </View>
 
-<TouchableOpacity 
+{/* <TouchableOpacity 
 onPress={ () => navigation.navigate("TabsRoute")}
 style={styles.btn}>
   <Text style={{color:'white'}}>Log in</Text>
 </TouchableOpacity>
+ */}
+
+<CustomButton 
+title= "Sign In"
+handlePress={() => navigation.navigate("TabsRoute")}
+containerStyles={styles.btn}
+
+/>
+
 
 
 <Text style={{fontWeight:'400', fontSize: 14, lineHeight: 20.3, color:'white', textAlign:'center'}}>

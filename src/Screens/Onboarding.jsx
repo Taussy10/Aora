@@ -33,7 +33,7 @@ const Onboarding = ({navigation}) => {
         <Text style={{fontWeight: '600', fontSize: 30 , lineHeight: 36 , fontFamily:'Poppins-Medium' , color:'#FF8E01' }}> Aora</Text></Text>
 </View>
         
-<View style={{width: 325, height: 44, justifyContent:'center', alignItems:'center' , top: 10 ,  }}>      
+<View style={{width: 325, height: 44, justifyContent:'center', alignItems:'center' , top: 10 ,    marginBottom: 50,  }}>      
         <Text style={{color:'#CDCDE0' , fontWeight: '400', fontSize: 14, lineHeight: 22.4,}}>Where Creativity Meets Innovation: Embark on </Text>
         <Text style={{color:'#CDCDE0' , fontWeight: '400', fontSize: 14, lineHeight: 22.4,}}>a Journey of Limitless Exploration with Aora</Text>
         </View>
