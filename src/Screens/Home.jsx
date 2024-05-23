@@ -42,7 +42,12 @@ const Home = ({ navigation }) => {
         
         
         <View>
-<Text style={{color:'white'}}>{item.url}</Text>
+          <Text style={{color:'white' , fontSize:20}}>{item.Title}</Text>
+
+      <Image source={{uri: item.Thumbnail}} style={{height: 300 , width: 300}} 
+      resizeMode= 'contain'
+      />
+
         </View>
       }
         ListHeaderComponent={() => (
