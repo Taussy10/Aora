@@ -1,13 +1,19 @@
-import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable} from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable , ScrollView} from 'react-native'
+import React,{useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS } from '../Utils/Colors'
-
+import FormFiled from '../../Components/FormFiled'
 import CustomButton from '../../Components/CustomButton'
 
 const SignUp = ({navigation}) => {
+const [form, setform] = useState({
+  email: '',
+  password: '',
+})
+
   return (
     <SafeAreaView style={styles.container}>
+<ScrollView>
 
 <View style={ styles.subContainer}>
 
@@ -23,50 +29,66 @@ const SignUp = ({navigation}) => {
  {/* Form container */}
 <View style={styles.formContainer}>
 
-<View  style={styles.inputContainer}>
+<FormFiled
+title="Email"
+value= {form.email}
+handleChangeText ={(e)=> setform({...form , 
+  email: e})}
+  
+  keyboardType = "email-address"
+  
+/>
+<FormFiled
+title="Password"
+value= {form.password}
+handleChangeText ={(e)=> setform({...form , 
+  password: e})}
+  
+  // keyboardType = "email-address"
+  
+/>
+{/* <View  style={styles.inputContainer}>
   <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>Username</Text>
   <TextInput 
- placeholder='Enter your userNme'
+  placeholder='Enter your userNme'
   style={styles.input}
   placeholderTextColor="#CDCDE0"
-   />
+  />
+  </View>
+  
+  <View  style={styles.inputContainer}>
+  <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>
+  Email</Text>
+  <TextInput 
+  placeholder='Enter your email'
+  style={styles.input}
+  placeholderTextColor="#CDCDE0"
+  />
 </View>
 
 <View  style={styles.inputContainer}>
   <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>
-    Email</Text>
+  Password</Text>
   <TextInput 
- placeholder='Enter your email'
+  placeholder='Enter your password'
   style={styles.input}
   placeholderTextColor="#CDCDE0"
-   />
-</View>
-
-<View  style={styles.inputContainer}>
-  <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>
-    Password</Text>
-  <TextInput 
- placeholder='Enter your password'
-  style={styles.input}
-  placeholderTextColor="#CDCDE0"
-   />
-
-</View>
+  />
+  
+</View> */}
 
 {/* <TouchableOpacity 
 onPress={ () => navigation.navigate("TabsRoute")}
 style={styles.btn}>
-  <Text style={{color:'white'}}>Sign Up</Text>
+<Text style={{color:'white'}}>Sign Up</Text>
 </TouchableOpacity> */}
 
 <CustomButton 
-title= "Sign Ups"
+title= "Sign Up"
 handlePress={() => navigation.navigate("TabsRoute")}
 containerStyles={styles.btn}
 
 />
-
-
 
 
 <Text style={{fontWeight:'400', fontSize: 14, lineHeight: 20.3,color:'white', textAlign:'center'}}>
@@ -77,11 +99,12 @@ containerStyles={styles.btn}
   </Text>
 
  
-</View>
+  </View>
 
 
       </View>
 
+</ScrollView>
     </SafeAreaView>
   )
 }
@@ -111,27 +134,27 @@ const styles = StyleSheet.create({
     gap: 20,
     // backgroundColor:'lightgreen'
   },
-  inputContainer:{
-    width: 327,
-    height: 88,
-    gap: 8,
-    // flexDirection:'row',
-    // justifyContent:'center',
-  },
-  input:{
-    width: 327,
-    height: 58,
-    borderRadius: 8,
-    borderWidth: 1,
-    padding: 16,
-    // backgroundColor:'white',
-    backgroundColor:'#1E1E2D',
-   gap: 10,
-  //  color: '#CDCDE0'
-  //  color: 'white',
-  elevation: 10,
-  color:'#CDCDE0'
-  },
+  // inputContainer:{
+  //   width: 327,
+  //   height: 88,
+  //   gap: 8,
+  //   // flexDirection:'row',
+  //   // justifyContent:'center',
+  // },
+  // input:{
+  //   width: 327,
+  //   height: 58,
+  //   borderRadius: 8,
+  //   borderWidth: 1,
+  //   padding: 16,
+  //   // backgroundColor:'white',
+  //   backgroundColor:'#1E1E2D',
+  //  gap: 10,
+  // //  color: '#CDCDE0'
+  // //  color: 'white',
+  // elevation: 10,
+  // color:'#CDCDE0'
+  // },
   btn:{
     width: 327,
     height: 58,
