@@ -60,7 +60,7 @@ style={styles.btn}>
 </TouchableOpacity> */}
 
 <CustomButton 
-title= "Sign Up"
+title= "Sign Ups"
 handlePress={() => navigation.navigate("TabsRoute")}
 containerStyles={styles.btn}
 
