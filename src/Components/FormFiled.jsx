@@ -3,7 +3,7 @@ import React from 'react'
 
 const FormFiled = () => {
   return (
-    <View>
+    <View style={{flex: 1, backgroundColor:'lightgreen'}}>
       <View  style={styles.inputContainer}>
   <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>Username</Text>
   <TextInput 

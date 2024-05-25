@@ -3,8 +3,10 @@ import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS } from '../Utils/Colors'
 import CustomButton from '../../Components/CustomButton'
+import FormFiled from '../../Components/FormFiled'
 
-const SignUp = ({navigation}) => {
+const SignIn = ({navigation}) => {
+
   return (
     <SafeAreaView style={styles.container}>
 
@@ -22,7 +24,10 @@ const SignUp = ({navigation}) => {
  {/* Form container */}
 <View style={styles.formContainer}>
 
-<View  style={styles.inputContainer}>
+<FormFiled />
+
+
+{/* <View  style={styles.inputContainer}>
   <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>
     Email</Text>
   <TextInput 
@@ -30,9 +35,9 @@ const SignUp = ({navigation}) => {
   style={styles.input}
   placeholderTextColor="#CDCDE0"
    />
-</View>
+</View> */}
 
-<View  style={{ marginBottom: 100  ,...styles.inputContainer}}>
+{/* <View  style={{ marginBottom: 100  ,...styles.inputContainer}}>
   <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>
     Password</Text>
   <TextInput 
@@ -41,8 +46,9 @@ const SignUp = ({navigation}) => {
   placeholderTextColor="#CDCDE0"
    />
    <Text style={{color:'white', textAlign:'right', }}>Forget password ?</Text>
+</View> */}
 
-</View>
+
 
 {/* <TouchableOpacity 
 onPress={ () => navigation.navigate("TabsRoute")}
@@ -50,6 +56,9 @@ style={styles.btn}>
   <Text style={{color:'white'}}>Log in</Text>
 </TouchableOpacity>
  */}
+
+
+
 
 <CustomButton 
 title= "Sign In"
@@ -68,8 +77,9 @@ containerStyles={styles.btn}
   </Pressable>
 </Text>
 
-
+{/* </View>contin */}
 </View>
+
 
 
       </View>
@@ -78,7 +88,7 @@ containerStyles={styles.btn}
   )
 }
 
-export default SignUp
+export default SignIn
 
 const styles = StyleSheet.create({
   container:{

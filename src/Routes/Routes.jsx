@@ -34,7 +34,7 @@ const Routes = () => {
       });
   
   return (
-    <Stack.Navigator  screenOptions={{headerShown:false}}>
+    <Stack.Navigator  initialRouteName='SignIn' screenOptions={{headerShown:false}}>
 
     <Stack.Screen name='Onboarding' component={Onboarding} />
     <Stack.Screen name='SignUp' component={SignUp} />
