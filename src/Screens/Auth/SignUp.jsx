@@ -12,8 +12,8 @@ const [form, setform] = useState({
 })
 
   return (
+
     <SafeAreaView style={styles.container}>
-<ScrollView>
 
 <View style={ styles.subContainer}>
 
@@ -30,12 +30,22 @@ const [form, setform] = useState({
 <View style={styles.formContainer}>
 
 <FormFiled
+title="username"
+value= {form.password}
+handleChangeText ={(e)=> setform({...form , 
+  password: e})}
+ placeholder= 'Enter your username'
+  
+/>
+<FormFiled
 title="Email"
 value= {form.email}
 handleChangeText ={(e)=> setform({...form , 
   email: e})}
   
   keyboardType = "email-address"
+  placeholder='Enter your Email'
+
   
 />
 <FormFiled
@@ -43,10 +53,12 @@ title="Password"
 value= {form.password}
 handleChangeText ={(e)=> setform({...form , 
   password: e})}
-  
+  placeholder='Enter your Password'
+
   // keyboardType = "email-address"
   
 />
+
 {/* <View  style={styles.inputContainer}>
   <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>Username</Text>
   <TextInput 
@@ -86,10 +98,9 @@ style={styles.btn}>
 <CustomButton 
 title= "Sign Up"
 handlePress={() => navigation.navigate("TabsRoute")}
-containerStyles={styles.btn}
+// containerStyles={styles.btn}
 
 />
-
 
 <Text style={{fontWeight:'400', fontSize: 14, lineHeight: 20.3,color:'white', textAlign:'center'}}>
   Already have an account?{' '}
@@ -104,8 +115,8 @@ containerStyles={styles.btn}
 
       </View>
 
-</ScrollView>
     </SafeAreaView>
+
   )
 }
 
@@ -115,14 +126,15 @@ const styles = StyleSheet.create({
   container:{
     flex: 1,
     // padding: 20,
-    backgroundColor: COLORS.PRIMARY
+    backgroundColor: COLORS.PRIMARY,
   },
   subContainer:{
     width: 327 , 
     height: 568.07 ,
-    top: 122, 
+    top: 60, 
     left: 24,
-    gap: 40
+    gap: 40,
+    
   },
   logo:{
     width:30.08,
@@ -160,10 +172,10 @@ const styles = StyleSheet.create({
     height: 58,
     padding: 10,
     borderRadius: 8,
-    marginTop: 10,
+    // marginTop: 10,
     backgroundColor:'#FF8C00',
     justifyContent:'center',
     alignItems:'center',
-    // marginTop: 54,
+    marginTop: 54,
   }
 })

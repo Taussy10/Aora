@@ -1,19 +1,49 @@
-import { StyleSheet, Text, View , TextInput } from 'react-native'
+import { StyleSheet, Text, View , TextInput, KeyboardAvoidingView, TouchableOpacity , Image } from 'react-native'
 import React from 'react'
+import { useState } from 'react'
 
-const FormFiled = () => {
+import {hiddenEye} from "../../assets/icons/eye-hide.png"
+import {eye} from "../../assets/icons/eye.png"
+
+const FormFiled = ({title , value , placeholder, handleChangeText, keyboardType, ...props }) => {
+  const [showPassowrd, setshowPassowrd] = useState(false)
+
+  // ()
   return (
-    <View style={{flex: 1, backgroundColor:'lightgreen'}}>
+    // <View>
+      <KeyboardAvoidingView behavior='padding'>
+
       <View  style={styles.inputContainer}>
-  <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>Username</Text>
+  <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>{title}</Text>
   <TextInput 
- placeholder='Enter your userNme'
+ placeholder={placeholder}
   style={styles.input}
   placeholderTextColor="#CDCDE0"
+  keyboardType= {keyboardType}
+  // keyboardType="email-address"
+  value={value}
+  onChangeText={handleChangeText}
+//  { title==="password" ? secureTextEntry: "Hello" }
+secureTextEntry={title ==="Password" && !showPassowrd}
+// It means if title this then do also this
    />
 </View>
+{title === "Password" && (
+            <TouchableOpacity onPress={() => setshowPassowrd(!showPassowrd)} style={{ 
+            flexDirection:'row-reverse', padding: 10}}>
+              <Image 
+                source={showPassowrd ? require('../../assets/icons/eye-hide.png') : require('../../assets/icons/eye.png')}
+                style={styles.icon} 
+                resizeMode= 'contain'
+                // resizeMode  is Image property not he Css property
+                
+                
+              />
+            </TouchableOpacity>
+          )}
 
-<View  style={styles.inputContainer}>
+
+{/* <View  style={styles.inputContainer}>
   <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>
     Email</Text>
   <TextInput 
@@ -21,9 +51,9 @@ const FormFiled = () => {
   style={styles.input}
   placeholderTextColor="#CDCDE0"
    />
-</View>
+</View> */}
 
-<View  style={styles.inputContainer}>
+{/* <View  style={styles.inputContainer}>
   <Text style={{color:'white', fontWeight:'500', lineHeight: 22.4,}}>
     Password</Text>
   <TextInput 
@@ -31,9 +61,11 @@ const FormFiled = () => {
   style={styles.input}
   placeholderTextColor="#CDCDE0"
    />
+</View> */}
 
-</View>
-    </View>
+    {/* </View> */}
+    </KeyboardAvoidingView>
+
   )
 }
 
@@ -61,4 +93,12 @@ const styles = StyleSheet.create({
   elevation: 10,
   color:'#CDCDE0'
   },
+  icon: {
+    height: 25,
+    width: 25,
+    color:'blue ',
+    // backgroundColor:'lightgreen'
+
+   
+  }
 })

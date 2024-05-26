@@ -1,12 +1,18 @@
-import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable} from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable ,} from 'react-native'
+import {useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS } from '../Utils/Colors'
 import CustomButton from '../../Components/CustomButton'
 import FormFiled from '../../Components/FormFiled'
 
+// ()
 const SignIn = ({navigation}) => {
+  const [form, setform] = useState({
+    email: '',
+    password: '',
+  })
 
+  const [isSubmitting, setIsSubmitting] = useState(false)
   return (
     <SafeAreaView style={styles.container}>
 
@@ -24,7 +30,22 @@ const SignIn = ({navigation}) => {
  {/* Form container */}
 <View style={styles.formContainer}>
 
-<FormFiled />
+<FormFiled 
+title="Email"
+value={form.email}
+handleChangeText={(e)=> setform({...form , email: e})}
+keboardType ="email-address"
+
+/>
+
+<FormFiled 
+title="Password"
+value={form.password}
+handleChangeText={(e)=> setform({...form , password: e})}
+// keboardType ="email-address"
+
+
+/>
 
 
 {/* <View  style={styles.inputContainer}>
@@ -60,16 +81,19 @@ style={styles.btn}>
 
 
 
+
 <CustomButton 
 title= "Sign In"
 handlePress={() => navigation.navigate("TabsRoute")}
 containerStyles={styles.btn}
+isLoading={isSubmitting}
 
 />
 
 
 
-<Text style={{fontWeight:'400', fontSize: 14, lineHeight: 20.3, color:'white', textAlign:'center'}}>
+
+<Text style={{fontWeight:'400', fontSize: 14, lineHeight: 20.3, color:'white', textAlign:'center', }}>
   Don't have an account?{' '}
   <Pressable onPress={() => navigation.navigate("SignUp")}>
     <Text style={{fontWeight:'600', fontSize: 14, lineHeight: 20.3, color:'#FF9001', textDecorationLine: 'underline'}}>
@@ -77,7 +101,10 @@ containerStyles={styles.btn}
   </Pressable>
 </Text>
 
+
+
 {/* </View>contin */}
+
 </View>
 
 
@@ -101,7 +128,7 @@ const styles = StyleSheet.create({
     height: 568.07 ,
     top: 122, 
     left: 24,
-    gap: 40
+    gap: 40,
   },
   logo:{
     width:30.08,
@@ -133,15 +160,5 @@ const styles = StyleSheet.create({
    color:'#CDCDE0',
   elevation: 10,
   },
-  btn:{
-    width: 327,
-    height: 58,
-    padding: 10,
-    borderRadius: 8,
-    marginTop: 10,
-    backgroundColor:'#FF8C00',
-    justifyContent:'center',
-    alignItems:'center',
-    // marginTop: 54,
-  }
+
 })

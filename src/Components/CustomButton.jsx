@@ -1,5 +1,5 @@
 
-import { ActivityIndicator, Text, TouchableOpacity , StyleSheet } from "react-native";
+import { ActivityIndicator, Text, TouchableOpacity , StyleSheet , } from "react-native";
 
 const CustomButton = ({
   title,
