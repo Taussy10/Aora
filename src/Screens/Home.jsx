@@ -18,7 +18,7 @@ const Home = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
   const {data:posts } =  useApprite(getAllposts) ;
 
-  console.log(posts);
+  // console.log(posts);
   const onRefresh = async () => {
     setRefreshing(true);
     try {

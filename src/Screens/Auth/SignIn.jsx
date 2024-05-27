@@ -1,9 +1,11 @@
-import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable ,} from 'react-native'
+import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable , Alert } from 'react-native'
 import {useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS } from '../Utils/Colors'
 import CustomButton from '../../Components/CustomButton'
 import FormFiled from '../../Components/FormFiled'
+import { SignIn as LogIn } from '../Utils/appwrite'
+
 
 // ()
 const SignIn = ({navigation}) => {
@@ -13,6 +15,35 @@ const SignIn = ({navigation}) => {
   })
 
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  const submit = async ()  => {
+    if (!form.email || form.password ) {
+      Alert.alert("Error", 'Please fill in all the fields')
+      
+    }
+    setIsSubmitting(true)
+  
+  try {
+    await LogIn(form.email , form.password , form.username)
+    // createUser()
+  
+    navigation.navigate("TabsRoute")
+  
+    // set it to global state
+  } catch (error) {
+    Alert.alert("error" , error.message)
+  }
+  finally{
+  
+    setIsSubmitting(false)
+  }
+  }
+  
+  // console.log(email , "Email" );
+  // console.log(password, "pssword");
+  console.log(form , "Form");
+
+
   return (
     <SafeAreaView style={styles.container}>
 
@@ -44,6 +75,14 @@ value={form.password}
 handleChangeText={(e)=> setform({...form , password: e})}
 // keboardType ="email-address"
 
+
+/>
+
+<CustomButton 
+title= "Sign In"
+handlePress={submit}
+containerStyles={styles.btn}
+isLoading={isSubmitting}
 
 />
 
@@ -81,14 +120,6 @@ style={styles.btn}>
 
 
 
-
-<CustomButton 
-title= "Sign In"
-handlePress={() => navigation.navigate("TabsRoute")}
-containerStyles={styles.btn}
-isLoading={isSubmitting}
-
-/>
 
 
 

@@ -1,15 +1,80 @@
-import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable , ScrollView} from 'react-native'
+import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable , ScrollView, Alert} from 'react-native'
 import React,{useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { COLORS } from '../Utils/Colors'
 import FormFiled from '../../Components/FormFiled'
 import CustomButton from '../../Components/CustomButton'
+import { createUser } from '../Utils/appwrite'
 
 const SignUp = ({navigation}) => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
 const [form, setform] = useState({
+  username: '',
   email: '',
   password: '',
 })
+
+const submit = async ()  => {
+  if (!form.username|| !form.email || form.password ) {
+    Alert.alert("Error", 'Please fill in all the fields')
+    
+  }
+  setIsSubmitting(true)
+
+try {
+  const results = await createUser(form.email , form.password , form.username)
+  // createUser()
+
+  navigation.navigate("TabsRoute")
+
+  // set it to global state
+} catch (error) {
+  Alert.alert("error" , error.message)
+}
+finally{
+
+  setIsSubmitting(false)
+}
+}
+
+console.log(form , "form SignUp");
+
+// const submit = async () => {
+//   if (!form.username || !form.email || !form.password) {
+//     Alert.alert("Error", 'Please fill in all the fields');
+//     return; // Return early if any field is missing
+//   }
+
+//   setIsSubmitting(true);
+
+//   try {
+//     const results = await createUser(form.email, form.password, form.username);
+//     // Handle success (e.g., navigate to another screen)
+//     navigation.navigate("TabsRoute");
+//   } catch (error) {
+//     Alert.alert("Error", error.message);
+//   } finally {
+//     setIsSubmitting(false);
+//   }
+// };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   return (
 
@@ -31,9 +96,9 @@ const [form, setform] = useState({
 
 <FormFiled
 title="username"
-value= {form.password}
+value= {form.username}
 handleChangeText ={(e)=> setform({...form , 
-  password: e})}
+  username: e})}
  placeholder= 'Enter your username'
   
 />
@@ -54,9 +119,16 @@ value= {form.password}
 handleChangeText ={(e)=> setform({...form , 
   password: e})}
   placeholder='Enter your Password'
+/>
+<CustomButton 
+title= "Sign Up"
+// navigation.navigate("TabsRoute")
+handlePress={submit}
+// isLoading props for checking submit or not and there if not then disable
+isLoading={isSubmitting}
+// handlePress={() => navigation.navigate("TabsRoute")}
+// containerStyles={styles.btn}
 
-  // keyboardType = "email-address"
-  
 />
 
 {/* <View  style={styles.inputContainer}>
@@ -95,12 +167,7 @@ style={styles.btn}>
 <Text style={{color:'white'}}>Sign Up</Text>
 </TouchableOpacity> */}
 
-<CustomButton 
-title= "Sign Up"
-handlePress={() => navigation.navigate("TabsRoute")}
-// containerStyles={styles.btn}
 
-/>
 
 <Text style={{fontWeight:'400', fontSize: 14, lineHeight: 20.3,color:'white', textAlign:'center'}}>
   Already have an account?{' '}
