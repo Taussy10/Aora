@@ -6,13 +6,13 @@ import { FlatList, StyleSheet, Text, View, Image, ActivityIndicator ,
    Alert} from 'react-native';
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { COLORS } from './Utils/Colors';
+import { COLORS } from '../Utils/Colors';
 import SearchInput from '../Components/SearchInput';
 import Trending from '../Components/Trending'; // Correct import path
 import EmptyState from '../Components/EmptyState';
 import { useState , useEffect } from 'react';
-import { getAllposts } from './Utils/appwrite';
-import useApprite from './Utils/useAppwrite';
+import { getAllposts } from '../Utils/appwrite';
+import useApprite from '../Utils/useAppwrite';
 
 const Home = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);

@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View  } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS } from './Utils/Colors'
+import { COLORS } from '../Utils/Colors'
 
 const Create = () => {
   return (

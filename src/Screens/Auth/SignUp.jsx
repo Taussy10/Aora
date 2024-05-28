@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable , ScrollView, Alert} from 'react-native'
 import React,{useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS } from '../Utils/Colors'
+import { COLORS } from '../../Utils/Colors'
 import FormFiled from '../../Components/FormFiled'
 import CustomButton from '../../Components/CustomButton'
-import { createUser } from '../Utils/appwrite'
+import { createUser } from '../../Utils/appwrite'
 
 const SignUp = ({navigation}) => {
   const [isSubmitting, setIsSubmitting] = useState(false)

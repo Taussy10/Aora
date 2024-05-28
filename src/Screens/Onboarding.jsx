@@ -1,15 +1,23 @@
 import { ScrollView, StyleSheet, Text, View , Image, TouchableOpacity, StatusBar } from 'react-native'
-import React from 'react'
+import React,{useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 // When we want to export function or part of something from the file 
 // then we export them by curly brackets
-import {COLORS} from  './Utils/Colors'
-
-import { images } from '../../constants/images'
+import {COLORS} from  '../Utils/Colors'
 import CustomButton from '../Components/CustomButton'
+// we need context cause context have data
+import { useGlobalContext } from '../Context/GlobalProvider'
 
 const Onboarding = ({navigation}) => {
+const {isLoading , isLoggedIn} = useGlobalContext()
+
+// useEffect(() => {
+//   if (!isLoading && isLoggedIn) {
+//     navigation.navigate("TabsRoute");
+//   }
+// }, [isLoading, isLoggedIn]);
+
   return (
     <SafeAreaView style={styles.container}  >
       {/* <Text style={{fontFamily:"Poppins-Black"}} >Onboarding</Text> */}
@@ -40,7 +48,7 @@ const Onboarding = ({navigation}) => {
 
 <CustomButton 
 title= "Continue with Email"
-handlePress={() => navigation.navigate("SignUp")}
+handlePress={() =>{(!isLoading && isLoggedIn) ? navigation.navigate("TabsRoute"):navigation.navigate("SignUp") }}
 containerStyles={styles.btn}
 
 />

@@ -1,10 +1,10 @@
 import { StyleSheet, Text, View , Image , TextInput, TouchableOpacity, Pressable , Alert } from 'react-native'
 import {useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { COLORS } from '../Utils/Colors'
+import { COLORS } from '../../Utils/Colors'
 import CustomButton from '../../Components/CustomButton'
 import FormFiled from '../../Components/FormFiled'
-import { SignIn as LogIn } from '../Utils/appwrite'
+import { SignIn as LogIn } from '../../Utils/appwrite'
 
 
 // ()
@@ -64,6 +64,8 @@ const SignIn = ({navigation}) => {
 <FormFiled 
 title="Email"
 value={form.email}
+// e is event represents new value  that is taking place: first we destructure the form 
+// then we update  the value of email: e
 handleChangeText={(e)=> setform({...form , email: e})}
 keboardType ="email-address"
 
