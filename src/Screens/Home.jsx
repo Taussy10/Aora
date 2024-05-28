@@ -13,40 +13,59 @@ import EmptyState from '../Components/EmptyState';
 import { useState , useEffect } from 'react';
 import { getAllposts } from '../Utils/appwrite';
 import useApprite from '../Utils/useAppwrite';
+import VideoCards from '../Components/VideoCards';
 
 const Home = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
-  const {data:posts } =  useApprite(getAllposts) ;
+  const {data:posts , refetch } =  useApprite(getAllposts) ;
 
-  // console.log(posts);
+  // when refersh it will show loader
   const onRefresh = async () => {
     setRefreshing(true);
-    try {
-      const fetchedPosts = await getAllposts();
-      setPosts(fetchedPosts);
-    } catch (error) {
-      console.error('Error refreshing posts:', error);
-    } finally {
-      setRefreshing(false);
-    }
+    await refetch();
+    setRefreshing(false);
   };
+
+
+
+
+
+
+
+  // console.log(posts);
+  // const onRefresh = async () => {
+  //   await refetch();
+
+  //   setRefreshing(true);
+  //   // try {
+  //   //   const fetchedPosts = await getAllposts();
+  //   //   setPosts(fetchedPosts);
+  //   // } catch (error) {
+  //   //   console.error('Error refreshing posts:', error);
+  //   // } finally {
+  //   //   setRefreshing(false);
+  //   // }
+  // };
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />
       <FlatList
+      
         data={posts}
         // data={[]}
-        // keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item) => item.$id}
         renderItem={({ item }) => 
         
         
         <View>
-          <Text style={{color:'white' , fontSize:20}}>{item.Title}</Text>
+          {/* <Text style={{color:'white' , fontSize:20}}>{item.Title}</Text>
 
-      <Image source={{uri: item.Thumbnail}} style={{height: 300 , width: 300}} 
+      <Image source={{uri: item.Thumbnail}} 
+      style={{height: 200 , width: 400 , backgroundColor:'lightgreen'}} 
       resizeMode= 'contain'
-      />
+      /> */}
+      <VideoCards  video={item}/>
 
         </View>
       }
@@ -78,8 +97,8 @@ const Home = ({ navigation }) => {
         // if text is emptpy it will show this
         // You you have to pass navigation to component
         //  from Parent componet otherwise you won't be able to use
+
         ListEmptyComponent={()=> (
-    
           // <Text style={{color:'white'}}>Empty</Text>
           <EmptyState 
           title="Be the first one to upload a video"
@@ -109,14 +128,14 @@ const styles = StyleSheet.create({
     // 130
     // height: 100,
     width: 327,
-    backgroundColor:'white',
+    // backgroundColor:'white',
     flex: 1,
   },
   headerContainer: {
     // 130
     height: 130,
     width: 327,
-    backgroundColor:'green',
+    // backgroundColor:'green',
     flex: 1,
   },
   header: {

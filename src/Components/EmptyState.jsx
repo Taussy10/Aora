@@ -15,7 +15,7 @@ const EmptyState = ({ title, subtitle , navigation }) => {
 <Text style={{fontWeight: '500' , fontFamily:'Poppins-Regular' , fontSize: 14 , lineHeight: 20.3 , color: '#CDCDE0'}}>{title}</Text>
 </View>
 <CustomButton
-  title="Create" 
+  title="Create Video" 
  handlePress={()=> navigation.navigate("Create")  }
 />
     </View>

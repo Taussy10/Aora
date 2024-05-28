@@ -2,20 +2,22 @@
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import React from 'react';
 
-const Trending = ({posts}) => { // Remove the destructuring
+const Trending = ({ posts}) => { // Remove the destructuring
   return (
     <FlatList 
     data={posts}
-    // keyExtractor={item=> item.$id}
-    keyExtractor={item=> item.id}
+    horizontal
+    // this is how id looks{with dollar sign} like in appwrite 
+    keyExtractor={item=> item.$id}
+    // keyExtractor={item=> item.id}
     renderItem={({item}) =>(
         <View>
-            <Text>{item.id}</Text>
+            <Text style={{color:'white'}}>{item.id}</Text>
             {/* <Text>{item.id}</Text> */}
         </View>
     ) }
 
-    horizontal
+
     />
     // <View style={styles.container}>
     //   <Text style={{ color: 'green' }}>Hello</Text>
