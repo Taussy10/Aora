@@ -47,6 +47,12 @@ const Home = ({ navigation }) => {
   //   // }
   // };
 
+  console.log(posts , "Posts");
+  console.log(posts.Title , "Posts");
+posts.forEach(element => {
+  console.log(element.Title);
+});
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" />

@@ -9,9 +9,7 @@ import { createUser } from '../../Utils/appwrite'
 const SignUp = ({navigation}) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
 const [form, setform] = useState({
-  username: '',
-  email: '',
-  password: '',
+  username: '', email: '',password: '',
 })
 
 const submit = async ()  => {
