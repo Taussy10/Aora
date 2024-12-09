@@ -1,19 +1,14 @@
-import { Stack, Link } from 'expo-router';
+import { StyleSheet, Text, View } from 'react-native'
+import React from 'react'
 
-import { Button } from '~/components/Button';
-import { Container } from '~/components/Container';
-import { ScreenContent } from '~/components/ScreenContent';
-
-export default function Home() {
+const index = () => {
   return (
-    <>
-      <Stack.Screen options={{ title: 'Home' }} />
-      <Container>
-        <ScreenContent path="app/index.tsx" title="Home" />
-        <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
-          <Button title="Show Details" />
-        </Link>
-      </Container>
-    </>
-  );
+    <View>
+      <Text>index</Text>
+    </View>
+  )
 }
+
+export default index
+
+const styles = StyleSheet.create({})

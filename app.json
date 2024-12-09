@@ -3,7 +3,7 @@
     "name": "Aora",
     "slug": "Aora",
     "version": "1.0.0",
-
+    "newArchEnabled": true,
     "scheme": "Aora",
     "web": {
       "bundler": "metro",
@@ -37,5 +37,6 @@
         "backgroundColor": "#ffffff"
       }
     }
+    
   }
 }
