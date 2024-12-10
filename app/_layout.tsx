@@ -25,7 +25,10 @@ export default function RootLayout() {
 
   // if one of the things statsify then will do hideAsyncc
   useEffect(() => {
-if (loaded|| error) {
+     
+// used to explicitly raise an exception here we are rasing an erorr if errror occurs
+if (error) throw error 
+if (loaded) {
   SplashScreen.hideAsync()
 }
   }, [loaded , error])
@@ -37,11 +40,11 @@ if (loaded|| error) {
   }
   
 
-
+// always write like this if (tabs) then write (tabs)
   return (
-    <Stack>
+    <Stack screenOptions={{headerShown: false}} >
       <Stack.Screen name='index' />
-      <Stack.Screen name='profile' />
+      <Stack.Screen name='(tabs)' />
     </Stack>
   ) 
   
