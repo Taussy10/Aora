@@ -1,14 +1,16 @@
+
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { Redirect } from 'expo-router'
 
-const index = () => {
+export default function index() {
   return (
     <View>
-      <Text>index</Text>
+      <Text className=' text-xl  font-bold'>Index</Text>
+      <Redirect href={"/profile"} />
     </View>
   )
 }
 
-export default index
-
 const styles = StyleSheet.create({})
+
