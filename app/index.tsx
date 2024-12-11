@@ -6,10 +6,11 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '~/constants'
 import CustomButton from '~/components/CustomButton'
 import { useRouter } from 'expo-router'
+import StatusBarComp from '~/components/StatusBarComp'
 
 // He converted index.tsx into onBoarding screen
 
-export default function onBoarding() {
+export default function Onboarding() {
   const router = useRouter()
   return (
     // flex-1: will take whole screen height that's empty 
@@ -20,7 +21,7 @@ export default function onBoarding() {
       {/* style is for smaller device if device  */}
      <ScrollView contentContainerStyle={{height: "100%"}}>
 {/* for content: can't be written safe cause there is scroll view */}
-<View className=' justify-center items-center px-4  '>
+<View className=' justify-center items-center px-4   '>
 
 <Image source={images.logo}
 resizeMode= 'contain'
@@ -54,12 +55,11 @@ containerStyles = "w-full  mt-7  "
 
      </ScrollView>
      {/*  */}
-   <StatusBar  barStyle={'light-content'} backgroundColor={"#161622"}/>
+     <StatusBarComp />
 
     </SafeAreaView>
   )
 }
 
-const styles = StyleSheet.create({})
 
   

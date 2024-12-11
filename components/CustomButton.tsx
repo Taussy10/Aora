@@ -4,9 +4,10 @@ import React from 'react'
 type propsType = {
     title: string,
     handlePress: () => void,
-    isLoading: boolean,
+    isLoading?: boolean,
     containerStyles?: string; // Optional styles for the button container
     textStyles?: string;      // Optional styles for the text
+    // question mark is for optional
 }
 
 const CustomButton = ({title , handlePress , containerStyles , textStyles, isLoading , 

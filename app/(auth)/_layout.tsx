@@ -7,8 +7,15 @@ import { Stack } from 'expo-router'
 
 const AuthLayout = () => {
   return (
-   <Stack>
-    <Stack.Screen name='signIn' />
+   <Stack 
+   initialRouteName='sign-in'
+   screenOptions={{headerShown:false}}
+   >
+    {/* even name of the file screen should match with file name
+    although can change titile using options
+    */}
+    <Stack.Screen name='sign-in' />
+    <Stack.Screen name='sign-up' />
    </Stack>
   )
 }
