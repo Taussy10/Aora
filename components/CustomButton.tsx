@@ -3,7 +3,7 @@ import React from 'react'
 
 type propsType = {
     title: string,
-    handlePress: () => void,
+    handlePress?: () => void,
     isLoading?: boolean,
     containerStyles?: string; // Optional styles for the button container
     textStyles?: string;      // Optional styles for the text

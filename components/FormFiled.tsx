@@ -9,11 +9,12 @@ type propsType = {
     handleChangeText: (e) => void,
     isLoading?: boolean,
     otherStyles?: string; 
-    textStyles?: string;     
+    textStyles?: string;  
+    keyboarType?: string   
     // question mark is for optional
 }
 
-const FormFiled = ({title , value ,placeholder ,handleChangeText,  otherStyles, ...props}:propsType) => {
+const FormFiled = ({title , value ,placeholder ,handleChangeText,keyboarType,  otherStyles, ...props}:propsType) => {
     const [showPassword, setShowPassword] = useState(false)
 
     console.log("input value from FormFilled: " ,value);
@@ -33,25 +34,29 @@ const FormFiled = ({title , value ,placeholder ,handleChangeText,  otherStyles, 
       value={value}
       onChangeText={handleChangeText}
       secureTextEntry={title === 'Password' && !showPassword }
+    //   keyboardType={keyboarType}
       />
       
       {
-    
-
         // it can be done via terniary operator but use terniary when you want to return in else part 
         // part then use this  and let me tell you if() { } this syntax won't work cause it  doesn't work 
         // in jsx even if you write inside { } cause jsx expects expression(mathematics) not statemnt( if is statement) 
 
-        // if the condition is true, and renders nothing otherwise:
-
+        // if the condition is true then renders nothing otherwise:
+// this is called:  Short-Circuit Logic
         title === "Password"  && (
             <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
-                <Image source={!showPassword ? icons.eyeHide: icons.eye}  />
+                <Image source={!showPassword ? icons.eyeHide: icons.eye} 
+                 resizeMode='contain'
+                className=' w-6 h-6 absolute right-0 bottom-4 ' />
 
             </TouchableOpacity>
         )
       }
+      
       </View>
+
+      
     
     </View>
   )
