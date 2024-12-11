@@ -2,10 +2,10 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React,{useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '~/constants'
-import FormFiled from '~/components/FormFiled'
-import CustomButton from '~/components/CustomButton'
+import FormFiled from '~/components/formFiled'
+import CustomButton from '~/components/customButton'
 import { Link } from 'expo-router'
-import StatusBarComp from '~/components/StatusBarComp'
+import StatusBarComp from '~/components/statusBarComp'
 const SignIn = () => {
   // here we have a object name form that has two keys
   // email and password both are sting 

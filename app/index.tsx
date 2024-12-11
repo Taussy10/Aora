@@ -4,9 +4,9 @@ import React from 'react'
 import { Redirect } from 'expo-router'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '~/constants'
-import CustomButton from '~/components/CustomButton'
+import CustomButton from '~/components/customButton'
 import { useRouter } from 'expo-router'
-import StatusBarComp from '~/components/StatusBarComp'
+import StatusBarComp from '~/components/statusBarComp'
 
 // He converted index.tsx into onBoarding screen
 

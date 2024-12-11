@@ -2,10 +2,11 @@ import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React,{useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '~/constants'
-import FormFiled from '~/components/FormFiled'
-import CustomButton from '~/components/CustomButton'
+import FormFiled from '~/components/formFiled'
+import CustomButton from '~/components/customButton'
 import { Link } from 'expo-router'
-import StatusBarComp from '~/components/StatusBarComp'
+import StatusBarComp from '~/components/statusBarComp'
+import { register } from '~/appwrite/appwrite'
 const SignUp = () => {
   // here we have a object name form that has two keys
   // email and password both are sting 
@@ -17,7 +18,8 @@ const SignUp = () => {
 const [isSubmitting, setIsSubmitting] = useState(false)
 
   const submit = () => {
-
+  //  register(form.email , form.username, form.password)
+  
   }
   return (
 
@@ -46,7 +48,7 @@ const [isSubmitting, setIsSubmitting] = useState(false)
       title = "Username"
       value = {form.password}
       placeholder='Input your Password'
-      handleChangeText ={(e) => setForm({...form , password:e }) }
+      handleChangeText ={(e) => setForm({...form , username:e }) }
       otherStyles= "mt-7 "
     
       />
