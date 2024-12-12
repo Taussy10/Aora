@@ -50,8 +50,12 @@ const {status , method} = data
 console.log(status, method); 
 
 // actully async functions always returns a promise 
-// so if you return the data then data will with promise object
-// now if you want to use in fun3 then await fun2()
+// so if you return the data then data will with promise object but this time
+// with parsed data so no need to again convert in json 
+// now if you want to use in fun3 then await fun2() and make sure it's async function
+// an why await cause it takes time to get the the data
+// and if you don't return data then as you know that if nothing returns
+// then returns , returns  undefined so you won't get any data 
 return data
   
 }
@@ -63,3 +67,12 @@ fun2()
 // execute then chrome won't work (if the code hasn't returned promise(basically execute))
  
 // for handeling errors in async function use trycatch
+
+async function fun3() {
+const data2 = await fun2()
+console.log("data2 :", data2);
+
+
+
+} 
+fun3()
