@@ -10,14 +10,14 @@ type propsType = {
     isLoading?: boolean,
     otherStyles?: string; 
     textStyles?: string;  
-    keyboarType?: string   
+    keyboardType?: string   
     // question mark is for optional
 }
 
-const FormFiled = ({title , value ,placeholder ,handleChangeText,keyboarType,  otherStyles, ...props}:propsType) => {
+const FormFiled = ({title , value ,placeholder ,handleChangeText,keyboardType,  otherStyles, ...props}:propsType) => {
     const [showPassword, setShowPassword] = useState(false)
 
-    console.log("input value from FormFilled: " ,value);
+    // console.log("input value from FormFilled: " ,value);
     
   return (
     <View className={` space-y-2 ${otherStyles}`}>
@@ -30,11 +30,12 @@ const FormFiled = ({title , value ,placeholder ,handleChangeText,keyboarType,  o
   <TextInput 
   className='  h-full  text-white font-psemibold text-base'
       placeholder={placeholder}
-      placeholderTextColor= "#7b7b8b "
+      // placeholderTextColor= "#7b7b8b"
+      placeholderTextColor= "grey"
       value={value}
       onChangeText={handleChangeText}
       secureTextEntry={title === 'Password' && !showPassword }
-    //   keyboardType={keyboarType}
+      keyboardType={keyboardType}
       />
       
       {

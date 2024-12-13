@@ -1,4 +1,4 @@
-import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Alert, Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 import React,{useState} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '~/constants'
@@ -6,17 +6,25 @@ import FormFiled from '~/components/formFiled'
 import CustomButton from '~/components/customButton'
 import { Link } from 'expo-router'
 import StatusBarComp from '~/components/statusBarComp'
+import { signIn } from '~/appwrite/appwrite'
+
+import { useRouter } from 'expo-router'
 const SignIn = () => {
   // here we have a object name form that has two keys
   // email and password both are sting 
   const [form, setForm] = useState({
     email: "",
-    password: " "
+    password: ""
   })
 const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const submit = () => {
-
+const router = useRouter()
+  const submit = async() => {
+          try {
+            await signIn(form.email , form.password)
+      router.replace("/home")
+          } catch (error:any) {
+            Alert.alert("Erorr", error)
+          }
   }
   return (
 
@@ -40,7 +48,7 @@ const [isSubmitting, setIsSubmitting] = useState(false)
       // form object and putting value email to e 
       handleChangeText ={(e) => setForm({...form , email:e }) }
       otherStyles= "mt-7 "
-      keyboarType = "email-address"
+      keyboardType = "email-address"
       />
       <FormFiled 
       title = "Password"
@@ -61,7 +69,7 @@ const [isSubmitting, setIsSubmitting] = useState(false)
 
   <Text className=' text-lg text-gray-100  font-pregular'>
     Don't have an account?  </Text>
-    <Link href={'/sing-up'} className=' text-lg font-psemibold text-secondary'>Signup</Link>
+    <Link href={'/sign-up'} className=' text-lg font-psemibold text-secondary'>Signup</Link>
 </View>
         </View>
 

@@ -17,6 +17,11 @@ const CustomButton = ({title , handlePress , containerStyles , textStyles, isLoa
     onPress={handlePress}
     activeOpacity={0.7}
     disabled={isLoading}
+    // add if loading show indicator no
+    // disabled={isLoading === true ?  <ActivityIndicator color={"white"} />: 
+
+      // <Text className={`text-primary font-psemibold text-lg ${textStyles} `} >{title}</Text>
+    // }
     className= {`bg-secondary rounded-xl min-h-[62px] justify-center items-center
     ${containerStyles}
     ${isLoading ? "opacity-50": " " }
