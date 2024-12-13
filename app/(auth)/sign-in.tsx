@@ -17,13 +17,15 @@ const SignIn = () => {
     password: ""
   })
 const [isSubmitting, setIsSubmitting] = useState(false)
+
 const router = useRouter()
   const submit = async() => {
           try {
             await signIn(form.email , form.password)
       router.replace("/home")
           } catch (error:any) {
-            Alert.alert("Erorr", error)
+            Alert.alert("Erorr", error.message)
+            // don't pass errror as it's an object 
           }
   }
   return (
