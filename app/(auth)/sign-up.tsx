@@ -18,14 +18,21 @@ const SignUp = () => {
 
     const submit = async () => {
         try {
+            if (!form.username || !form.email || !form.password) {
+                // Alert is taking two props: 1.Title(of errror) 2.message 
+                Alert.alert("Error" , "Please fill in all the fields")
+                
+            }
             setIsSubmitting(true)
-            await createUser(form.email, form.password, form.username)
+            // store the result for later use 
+          const result =   await createUser(form.email, form.password, form.username)
+        //   set it to global state
             router.replace('/home')
         } catch (error: any) {
             // Handle error appropriately, perhaps show an alert
-            Alert.alert(error)
+            Alert.alert(error.message)
             throw new Error(error)
-        } finally {
+        } finally { 
             setIsSubmitting(false)
         }
     }

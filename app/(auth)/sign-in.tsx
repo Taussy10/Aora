@@ -19,15 +19,35 @@ const SignIn = () => {
 const [isSubmitting, setIsSubmitting] = useState(false)
 
 const router = useRouter()
-  const submit = async() => {
-          try {
-            await signIn(form.email , form.password)
-      router.replace("/home")
-          } catch (error:any) {
-            Alert.alert("Erorr", error.message)
-            // don't pass errror as it's an object 
-          }
-  }
+  // const submit = async() => {
+  //         try {
+  //           await signIn(form.email , form.password)
+  //     router.replace("/home")
+  //         } catch (error:any) {
+  //           Alert.alert("Erorr", error.message)
+  //           // don't pass errror as it's an object 
+  //         }
+  // }
+  const submit = async () => {
+    try {
+        if (!form.email || !form.password) {
+          
+            Alert.alert("Error" , "Please fill in all the fields")
+            
+        }
+        setIsSubmitting(true)
+        // store the result for later use 
+      const result =   await signIn(form.email, form.password)
+    //   set it to global state
+        router.replace('/home')
+    } catch (error: any) {
+        // Handle error appropriately, perhaps show an alert
+        Alert.alert(error.message)
+        throw new Error(error)
+    } finally { 
+        setIsSubmitting(false)
+    }
+}
   return (
 
     <SafeAreaView className=' flex-1 bg-primary'>

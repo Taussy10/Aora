@@ -1,4 +1,4 @@
-import {Client , Account , ID, Avatars, Databases , } from 'react-native-appwrite'
+import {Client , Account , ID, Avatars, Databases, Query , } from 'react-native-appwrite'
 import { config } from '~/key'
 
 
@@ -79,6 +79,43 @@ export const  signIn = async (email:string , password: string) => {
         const session = account.createEmailPasswordSession(email, password)
         // why return? so that we can use this fun in other
       return session
+    } catch (error:any) {
+        console.log("signIn: ", error);
+        throw new Error(error)
+    }
+
+    
+}
+export const  getCurrentUser = async () => {
+    try {
+        // for getting the data of currently logged in user.
+     const currentAcconut = await account.get()
+ 
+     //if no  currentAccount in appwrite'Auth then throw error
+      if (!currentAcconut) {
+     throw new Error
+      }
+    //   both syntax is correct if you have two condiiton body in
+    // just one line then don't use { }
+    //   if (!currentUser) throw new Error
+
+    // for listing the userData from database
+    const currentUser = database.listDocuments(
+        config.databseId,
+        config.usersCollectionId,
+        [
+            //accontId is key and value is currentAccount.id
+            Query.equal('accountId', currentAcconut.$id)
+        ]
+    )
+// if no user in database then throw error
+    if (!currentUser) {
+        throw new Error
+        
+    }
+
+    // for sending userData  to other from database only one user
+    return (await currentUser).documents[0]
     } catch (error:any) {
         console.log("signIn: ", error);
         throw new Error(error)

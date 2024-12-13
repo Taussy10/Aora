@@ -1,17 +1,22 @@
 
 import { Image, ScrollView, StatusBar, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { Redirect } from 'expo-router'
+
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '~/constants'
 import CustomButton from '~/components/customButton'
 import { useRouter } from 'expo-router'
 import StatusBarComp from '~/components/statusBarComp'
-
+import { useGlobalContext } from '~/context/GlobalProvider' 
+import { Redirect } from 'expo-router'
 // He converted index.tsx into onBoarding screen
 
 export default function Onboarding() {
   const router = useRouter()
+  const { loading, isLoggedIn } = useGlobalContext();
+
+  if (!loading && isLoggedIn) return <Redirect href="/home" />;
+
   return (
     // flex-1: will take whole screen height that's empty 
     // use it only in screen comp

@@ -3,6 +3,10 @@ import { Stack   } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import {useEffect} from 'react';
 import {useFonts} from 'expo-font'
+// import GlobalProvider from '~/context/globalProvider';
+// import GlobalProvider from '~/context/globalProvider';
+// import { GlobalProvider } from '~/context/globalProvider';
+import GlobalProvider from '~/context/GlobalProvider';
 
 //It  Makes the native splash screen (configured in app.json) remain visible until hideAsync is called
 // you can aslo remove it what if the resources not able to able fetch then it will not move
@@ -42,13 +46,13 @@ if (loaded) {
 
 // always write like this if (tabs) then write (tabs)
   return (
+    <GlobalProvider >
     <Stack screenOptions={{headerShown: false}} >
       <Stack.Screen name='index' />
       <Stack.Screen name='(auth)' />
       <Stack.Screen name='(tabs)' />
-      <Stack.Screen name='/search[query]' />
+      {/* <Stack.Screen name='/search[query]' /> */}
     </Stack>
+    </GlobalProvider>
   ) 
-  
-  // <Stack />;
-}
+  }
