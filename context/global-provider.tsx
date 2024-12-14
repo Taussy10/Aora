@@ -9,6 +9,7 @@ const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
 const [isLoggedIn, setIsLoggedIn] = useState(false)
 const [user, setUser] = useState(null)
 const [loading, setLoading] = useState(true)
+// here res means response that we got from get CurerentUser()
   useEffect(() => {
     getCurrentUser()
       .then((res) => {

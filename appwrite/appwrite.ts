@@ -10,7 +10,7 @@ const database = new Databases(client)
  client
  .setEndpoint(config.endpoint)
  .setProject(config.projectId)
- .setPlatform(config.platfomrm)
+ .setPlatform(config.platform)
 
 
 //  here's how to write code professonally
