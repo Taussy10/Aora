@@ -6,7 +6,7 @@ import {useFonts} from 'expo-font'
 // import GlobalProvider from '~/context/globalProvider';
 // import GlobalProvider from '~/context/globalProvider';
 // import { GlobalProvider } from '~/context/globalProvider';
-import GlobalProvider from '~/context/GlobalProvider';
+import GlobalProvider from '~/context/global-provider';
 
 //It  Makes the native splash screen (configured in app.json) remain visible until hideAsync is called
 // you can aslo remove it what if the resources not able to able fetch then it will not move

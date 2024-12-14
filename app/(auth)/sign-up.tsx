@@ -3,8 +3,8 @@ import { ScrollView, Text, View, Image, Alert } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Link, useRouter } from 'expo-router'
 import { images } from '~/constants'
-import FormFiled from '~/components/formFiled'
-import CustomButton from '~/components/customButton'
+import FormFiled from '~/components/form-filed'
+import CustomButton from '~/components/custom-button'
 import { createUser } from '~/appwrite/appwrite'
 
 const SignUp = () => {

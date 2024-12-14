@@ -4,10 +4,10 @@ import React from 'react'
 
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '~/constants'
-import CustomButton from '~/components/customButton'
+import CustomButton from '~/components/custom-button'
 import { useRouter } from 'expo-router'
-import StatusBarComp from '~/components/statusBarComp'
-import { useGlobalContext } from '~/context/GlobalProvider' 
+import StatusBarComp from '~/components/status-bar-comp'
+import { useGlobalContext } from '~/context/global-provider' 
 import { Redirect } from 'expo-router'
 // He converted index.tsx into onBoarding screen
 
