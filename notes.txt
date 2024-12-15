@@ -1,0 +1,6 @@
+Learn 
+1.Callback fun what's the use of it 
+2. then property
+3. How to make custom hooks
+4. Know how does react native works , what is callstack: will help you to 
+get less errors
