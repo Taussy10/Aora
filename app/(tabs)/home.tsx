@@ -1,10 +1,31 @@
-import { StyleSheet, Text, View , StatusBar, FlatList , Image} from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View , StatusBar, FlatList , Image, RefreshControl, Alert} from 'react-native'
+import React,{useState , useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { images } from '~/constants'
 import SearchInput from '~/components/search-input'
 import Trending from '~/components/trending'
+import EmptyState from '~/components/empty-state'
+import { useGlobalContext } from '~/context/global-provider'
+import { getAllPosts } from '~/appwrite/appwrite'
+import useAppwrite from '~/appwrite/use-appwrite'
+import VideoCard from '~/components/video-card'
 const Home = () => {
+  const [refreshing, setRefreshing] = useState(false)
+ const {data: posts , refetch , isLoading} = useAppwrite(getAllPosts)
+  const {user} = useGlobalContext()
+
+
+
+
+  console.log("user :", user);
+  console.log("Posts :", posts);
+   
+  const onRefreshing = async () => {
+    setRefreshing(true)
+    await refetch()
+    // re call vidoes: if any new vidoes apperead
+    setRefreshing(false)
+  }
   const DATA = [
     {
       id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
@@ -21,9 +42,10 @@ const Home = () => {
   ];
 
   return (
-    <SafeAreaView className=' bg-primary'>
+    <SafeAreaView className=' bg-primary flex-1 '>
       <FlatList 
-      data={DATA}
+      data={posts}
+      // $id is syntax of id from appwrite 
       keyExtractor={(item) => item.$id }
       ListHeaderComponent={() => (
         // parent container for ListHeaderComponent
@@ -64,10 +86,21 @@ const Home = () => {
         </View>
       )}
 
+ 
+      ListEmptyComponent={() => (
+       <EmptyState 
+       title= "No Videos Found"
+       subtitle = "Be the first one to upload a  video"
+       />
+      )}
+
+//  refreshing={true}
+ refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefreshing} />}
       renderItem={({item}) => (
         <View>
 
-        <Text className=' text-white'>{item.title}</Text>
+        {/* <Text className=' text-white'>{item.title}</Text> */}
+        <VideoCard video= {item} />
         </View>
       )}
 

@@ -7,7 +7,7 @@ import { icons } from '~/constants'
 // them like <TabIcon />
 const TabIcon = ({icon , color , name , focused }) => {
     return (
-        <View className='  items-center  justify-center   w-20  pt-5   '>
+        <View className='  items-center  justify-center  w-20  pt-5   '>
             <Image source={icon}
             resizeMode= "contain"
             tintColor={color}
@@ -33,14 +33,14 @@ const TabsLayout = () => {
     
      tabBarStyle: {
         backgroundColor: "#161622",
-        borderTopWidth: 1,
+        // borderTopWidth: 1,
         borderTopColor: "#232533",
-        height: 50,
-         borderTopRightRadius: 20,
-         borderTopLeftRadius: 20,
-         borderBottomRightRadius: 20,
-         borderBottomLeftRadius: 20,
-        //  padding: 30,
+        // height: 50
+        //  borderTopRightRadius: 20,
+        //  borderTopLeftRadius: 20,
+        //  borderBottomRightRadius: 20,
+        //  borderBottomLeftRadius: 20,
+        
         
       },
 
@@ -126,4 +126,3 @@ const TabsLayout = () => {
 
 export default TabsLayout
 
-const styles = StyleSheet.create({})

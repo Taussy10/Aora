@@ -123,3 +123,24 @@ export const  getCurrentUser = async () => {
 
     
 }
+
+export const  getAllPosts = async () => {
+    try {
+       const posts = database.listDocuments(
+        config.databseId,
+        config.videosCollectionId ,
+
+            // If you want to get all the data then no need to use query
+           
+
+            
+    )
+    return (await posts).documents
+    //   return session
+    } catch (error:any) {
+        console.log("signIn: ", error);
+        throw new Error(error)
+    }
+
+    
+}
