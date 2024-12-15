@@ -24,6 +24,8 @@ const Home = () => {
     <SafeAreaView>
       <FlatList 
       // FlatList  data  ko internally iterate karta hai.
+    //   data bas FlatList ko batata hai ki items kya hain.
+// renderItem ye decide karta hai ki har ek item ko kaise display kiya jayega.
       data={DATA}
       //simillar to event object in onChangeText in renderItem we get 
       // arg(just a name so it can change) object 
