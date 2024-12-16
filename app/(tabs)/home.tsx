@@ -9,12 +9,16 @@ import { useGlobalContext } from '~/context/global-provider'
 import { getAllPosts } from '~/appwrite/appwrite'
 import useAppwrite from '~/appwrite/use-appwrite'
 import VideoCard from '~/components/video-card'
+import { useFetchData } from '~/learning-section/custom-hook'
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false)
+  // useAppwrite(getAllPosts): getAllPost  is just we got params 
  const {data: posts , refetch , isLoading} = useAppwrite(getAllPosts)
   const {user} = useGlobalContext()
 
-
+ const a = useFetchData()
+ console.log("useFetchData :", a);
+ 
 
 
   console.log("user :", user);
