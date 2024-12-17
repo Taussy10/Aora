@@ -9,10 +9,7 @@ type propsType = {
 const VideoCard = ({video: {title , creator , thumbnail , prompt ,video ,
      creator:{username , avatar}}}) => {
 // we don't want to play every vidoe so will track them by usestate
-const [play, setPlay] = useState(false)
-
-
-        console.log(avatar);
+ const [play, setPlay] = useState(false)
         
   return (
     // for the centering(just remove flex-col , items-center just remove it I don't they are in use)

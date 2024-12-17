@@ -6,7 +6,8 @@ const Trending = ({posts}) => {
  <FlatList
  data={posts}
 
- keyExtractor={(item) => item.$id }
+//  keyExtractor={(item) => item.$id }
+ keyExtractor={(item) => item.$1id }
 horizontal={true}
  renderItem={({item}) => (
   <View>

@@ -16,9 +16,7 @@ const Home = () => {
  const {data: posts , refetch , isLoading} = useAppwrite(getAllPosts)
   const {user} = useGlobalContext()
 
- const a = useFetchData()
- console.log("useFetchData :", a);
- 
+
 
 
   console.log("user :", user);
