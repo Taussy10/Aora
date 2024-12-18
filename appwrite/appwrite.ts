@@ -144,3 +144,30 @@ export const  getAllPosts = async () => {
 
     
 }
+export const  getLatestPosts = async () => {
+    try {
+       const posts = database.listDocuments(
+        config.databseId,
+        config.videosCollectionId ,
+        [
+        Query.orderDesc('$createdAt'),
+        Query.limit(7)
+        // know can we use this below method ? 
+        // Query.orderDesc('$createdAt',  Query.limit(7)),
+      
+        ]
+
+            // If you want to get all the data then no need to use query
+           
+
+            
+    )
+    return (await posts).documents
+    //   return session
+    } catch (error:any) {
+        console.log("signIn: ", error);
+        throw new Error(error)
+    }
+
+    
+}

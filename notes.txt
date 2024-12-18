@@ -4,3 +4,4 @@ Learn
 3. How to make custom hooks
 4. Know how does react native works , what is callstack: will help you to 
 get less errors
+5.  Greate article on resize mode: https://mehrankhandev.medium.com/understanding-resizemode-in-react-native-dd0e455ce63

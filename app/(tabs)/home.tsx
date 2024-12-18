@@ -6,7 +6,7 @@ import SearchInput from '~/components/search-input'
 import Trending from '~/components/trending'
 import EmptyState from '~/components/empty-state'
 import { useGlobalContext } from '~/context/global-provider'
-import { getAllPosts } from '~/appwrite/appwrite'
+import { getAllPosts, getLatestPosts } from '~/appwrite/appwrite'
 import useAppwrite from '~/appwrite/use-appwrite'
 import VideoCard from '~/components/video-card'
 import { useFetchData } from '~/learning-section/custom-hook'
@@ -14,8 +14,11 @@ const Home = () => {
   const [refreshing, setRefreshing] = useState(false)
   // useAppwrite(getAllPosts): getAllPost  is just we got params 
  const {data: posts , refetch , isLoading} = useAppwrite(getAllPosts)
+ const {data: latestPosts } = useAppwrite(getLatestPosts)
   const {user} = useGlobalContext()
 
+  
+console.log("All LatestPosts from Videos collections :",latestPosts);
 
 
 
@@ -77,12 +80,18 @@ const Home = () => {
           </View>
 
           {/* for the trennding videos */}
-          <View className="w-full flex-1 pt-5 pb-8 bg-blue-500">
+          <View className="w-full flex-1 pt-5 pb-8 bg-blue-500 ">
           <Text className=' text-lg font-pregular text-gray-100 mb-3'>Trending Vidoes</Text>
 
-   {/* ?? if it doesn't exit then will show just [] */}
+   {/* ??: Nullish Coalescing Operator(or you can say "Nullish Operator")
+   if the value on the left side empty or undefined then right side 
+   value([]) will be assigned
+    
+   do't worry about error: just showing the value is there it won't become 
+   nullish
+   */}
 
-<Trending posts={[{id:1 , },{id:1 , },{id:1 , }] ?? [] } />
+<Trending posts={latestPosts ?? [] } />
          
            </View>
         </View>
@@ -121,4 +130,3 @@ const Home = () => {
 
 export default Home
 
-const styles = StyleSheet.create({})

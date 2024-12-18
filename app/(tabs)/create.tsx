@@ -11,4 +11,3 @@ const Create = () => {
 
 export default Create
 
-const styles = StyleSheet.create({})
