@@ -1,7 +1,10 @@
-import { FlatList, ImageBackground, StyleSheet, Text, Image , TouchableOpacity, View } from 'react-native'
+import { FlatList, ImageBackground, StyleSheet, Text, Image , TouchableOpacity, View, Dimensions } from 'react-native'
 import React,{useState} from 'react'
 import * as Animatable from 'react-native-animatable';
 import { icons } from '~/constants';
+import { useEvent } from 'expo';
+import { useVideoPlayer, VideoView } from  'expo-video';
+
 
 
 
@@ -28,7 +31,13 @@ const TrendingItem = ({activeItem, item}) => {
   // for checking video Playing or not
   const [play, setPlay] = useState(false)
 
-  console.log("activeItem & item : ",activeItem.$id , item.$id);
+  // console.log("activeItem & item : ",activeItem.$id , item.$id);
+
+  const player = useVideoPlayer(item.video, (player) => {
+    player.loop = true;
+    player.play();
+  });
+  console.log("Video :",item.video);
   
   return(
     <Animatable.View
@@ -40,7 +49,21 @@ const TrendingItem = ({activeItem, item}) => {
     >
  {
   play? (
-    <Text className=' text-white'> Playing</Text>
+    // <Text className=' text-white'> Playing</Text>
+    <VideoView
+    // className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
+    style={{
+      width: Dimensions.get("window").width ,
+      height: Dimensions.get("window").width
+    }}
+   allowsFullscreen 
+   allowsPictureInPicture
+   startsPictureInPictureAutomatically
+    player={player}
+
+    
+     
+    />
   ):
   <TouchableOpacity
   className="relative flex justify-center items-center"
@@ -57,6 +80,7 @@ const TrendingItem = ({activeItem, item}) => {
     />
 
     <Image 
+     
      source={icons.play}
      className="w-12 h-12 absolute"
     resizeMode= "contain" 
@@ -70,7 +94,7 @@ const TrendingItem = ({activeItem, item}) => {
 const Trending = ({posts}) => {
   // posts[0] means that I nedd 1st index posts (now what's post and what data is coming ? check from where posts is coming )
   // const activeItem = posts[0]
-  const [activeItem, setActiveItem] = useState(posts[0].$id); // Store the string ID
+  const [activeItem, setActiveItem] = useState(posts[0]); // Store the string ID
 
   // fn provides so we have to {destructure}
 //   getting viewableItems (basially those are 70% visible)

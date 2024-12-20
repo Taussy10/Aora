@@ -10,6 +10,7 @@ import { getAllPosts, getLatestPosts } from '~/appwrite/appwrite'
 import useAppwrite from '~/appwrite/use-appwrite'
 import VideoCard from '~/components/video-card'
 import { useFetchData } from '~/learning-section/custom-hook'
+import VideoComp from '~/components/video-comp'
 const Home = () => {
   const [refreshing, setRefreshing] = useState(false)
   // useAppwrite(getAllPosts): getAllPost  is just we got params 
@@ -91,7 +92,8 @@ console.log("All LatestPosts from Videos collections :",latestPosts);
    nullish
    */}
 
-<Trending posts={latestPosts ?? [] } />
+<VideoComp posts={latestPosts ?? [] } />
+{/* <Trending posts={latestPosts ?? [] } /> */}
          
            </View>
         </View>
