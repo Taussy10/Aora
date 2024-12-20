@@ -37,7 +37,7 @@ const TrendingItem = ({activeItem, item}) => {
     player.loop = true;
     player.play();
   });
-  console.log("Video :",item.video);
+  console.log("item.video from trending :",item.video);
   
   return(
     <Animatable.View
@@ -99,11 +99,11 @@ const Trending = ({posts}) => {
   // fn provides so we have to {destructure}
 //   getting viewableItems (basially those are 70% visible)
   const viewableItemsChanged = ({viewableItems}) => {
-    console.log("VisiableItems :" , viewableItems);
+    console.log("VisiableItems from trending :" , viewableItems);
     
     if (viewableItems.length > 0) {
       setActiveItem(viewableItems[0].key);
-      console.log("more than 0", viewableItems[0].key);
+      console.log("more than 0 from trending", viewableItems[0].key);
       
     }
 
