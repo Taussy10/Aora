@@ -1,6 +1,8 @@
 import { View, Text , Image, TouchableOpacity } from 'react-native'
 import React,{useState }from 'react'
 import { icons } from '~/constants'
+import { useVideoPlayer, VideoView } from  'expo-video';
+
 type propsType = {
     
 }
@@ -11,13 +13,18 @@ const VideoCard = ({video: {title , creator , thumbnail , prompt ,video ,
 // we don't want to play every vidoe so will track them by usestate
  const [play, setPlay] = useState(false)
         
+ const player = useVideoPlayer(video, (player) => {
+     player.loop = true;
+     player.play();
+   });
   return (
     // for the centering(just remove flex-col , items-center just remove it I don't they are in use)
     //  and and giving px and mb
-    <View className=" flex-col items-center px-4 mb-14 bg-green-500">
+    <View className=" flex-col items-center px-4 mb-14 bg-green-500 ">
         
         {/* then for the avatar + title + username VS icon */}
-      <View className="flex-row gap-3 items-start bg-blue-500">
+      {/* <View className="flex-row gap-3 items-start bg-blue-500"> */}
+      <View className="flex-row gap-3 items-start ">
 
              {/* then for title VS username */}
       <View className=" justify-center items-center flex-row flex-1 bg-orange-500">
@@ -58,7 +65,25 @@ const VideoCard = ({video: {title , creator , thumbnail , prompt ,video ,
      {/* check play or not */}
      {
         play ? (
-            <Text>playing</Text>
+              <VideoView
+                contentFit= 'cover'
+               
+               // why className isn't working ? expo-video is new tool in expo that's why it 
+               // might not supportable by nativewind 
+               // className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
+               style={{
+                 width: "100%" ,
+                 height: 240,
+                 borderRadius: 10
+               }}
+               nativeControls={true}
+              allowsFullscreen 
+              allowsPictureInPicture
+              startsPictureInPictureAutomatically
+               player={player}
+           
+               
+  />
         ): (
             <TouchableOpacity
             activeOpacity={0.7}
