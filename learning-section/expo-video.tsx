@@ -11,7 +11,8 @@ const videoSource =
 const VideoComp = ({posts}) => {
 
   // useVideoPlayer is a hook for creating a videoPlayer UI 
-  // it takes two things: resource and a call back function
+  // it takes two things: resource(should be always mp4(you can try other other formats but that 
+  // must be a video format (don't try with youtube video link (I was trying lol)) )) and a call back function
   // player is for configuration of the  videoPlayer
     // this player(a fun) returns an object that has some kyes  
     // such as player 

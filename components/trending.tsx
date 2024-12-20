@@ -27,10 +27,12 @@ const zoomOut = {
   },
 }
 
-const TrendingItem = ({activeItem, item}) => {
+const TrendingItem = ({ activeItem, playingItem, item, setPlayingItem }) => {
   // for checking video Playing or not
   const [play, setPlay] = useState(false)
+  const isPlaying = playingItem === item.$id; // Check if this item is currently playing
 
+  
   // console.log("activeItem & item : ",activeItem.$id , item.$id);
 
   const player = useVideoPlayer(item.video, (player) => {
@@ -48,14 +50,20 @@ const TrendingItem = ({activeItem, item}) => {
     // miliseconds
     >
  {
-  play? (
+isPlaying ? (
     // <Text className=' text-white'> Playing</Text>
     <VideoView
+     contentFit= 'cover'
+    
+    // why className isn't working ? expo-video is new tool in expo that's why it 
+    // might not supportable by nativewind 
     // className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
     style={{
-      width: Dimensions.get("window").width ,
-      height: Dimensions.get("window").width
+      width: 208 ,
+      height: 288,
+      borderRadius: 27
     }}
+    nativeControls={true}
    allowsFullscreen 
    allowsPictureInPicture
    startsPictureInPictureAutomatically
@@ -68,7 +76,7 @@ const TrendingItem = ({activeItem, item}) => {
   <TouchableOpacity
   className="relative flex justify-center items-center"
   activeOpacity={0.7}
-  onPress={()=> setPlay(true)}
+  onPress={() => setPlayingItem(item.$id)} // Start playing this video
   // why in arrow function cause  we have to return something need to write in arrow function
   // otherwise you could use this 
   // onPress={setPlay(true)}
@@ -95,17 +103,22 @@ const Trending = ({posts}) => {
   // posts[0] means that I nedd 1st index posts (now what's post and what data is coming ? check from where posts is coming )
   // const activeItem = posts[0]
   const [activeItem, setActiveItem] = useState(posts[0]); // Store the string ID
+  const [playingItem, setPlayingItem] = useState(null) // for tracking item playing
 
   // fn provides so we have to {destructure}
 //   getting viewableItems (basially those are 70% visible)
   const viewableItemsChanged = ({viewableItems}) => {
     console.log("VisiableItems from trending :" , viewableItems);
-    
     if (viewableItems.length > 0) {
       setActiveItem(viewableItems[0].key);
-      console.log("more than 0 from trending", viewableItems[0].key);
-      
+      // if playingItem === null and viewableItems[0].key is not matching with playing item 
+      if (playingItem && viewableItems[0].key !== playingItem) {
+        setPlayingItem(null);
+      }
     }
+    
+   
+    
 
   }
   return (
@@ -120,11 +133,13 @@ onViewableItemsChanged={viewableItemsChanged}
 viewabilityConfig={{
   itemVisiblePercentThreshold: 70 // if item is 70% then count it as Viewable item otherwise  it's a non-Viewable
 }}
-contentOffset={{x:170}}
+contentOffset={{x:170 ,y: 0}}
  renderItem={({item}) => (
   // in this we  also we can create comps
   // these are just props that will be recived by TrendingItem comp
- <TrendingItem activeItem= {activeItem} item={item} />
+ <TrendingItem activeItem= {activeItem} item={item}  playingItem={playingItem}        
+    setPlayingItem={setPlayingItem}
+ />
  )}
  />   
   )

@@ -80,7 +80,8 @@ console.log("All LatestPosts from Videos collections :",latestPosts);
           </View>
 
           {/* for the trennding videos */}
-          <View className="w-full flex-1 pt-5 pb-8 bg-blue-500 ">
+          {/* <View className="w-full flex-1 pt-5 pb-8 bg-blue-500 "> */}
+          <View className="w-full flex-1 pt-5 pb-8 ">
           <Text className=' text-lg font-pregular text-gray-100 mb-3'>Trending Vidoes</Text>
 
    {/* ??: Nullish Coalescing Operator(or you can say "Nullish Operator")
