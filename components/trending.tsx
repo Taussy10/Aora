@@ -32,14 +32,14 @@ const TrendingItem = ({ activeItem, playingItem, item, setPlayingItem }) => {
   const [play, setPlay] = useState(false)
   const isPlaying = playingItem === item.$id; // Check if this item is currently playing
 
-  
+   
   // console.log("activeItem & item : ",activeItem.$id , item.$id);
 
   const player = useVideoPlayer(item.video, (player) => {
     player.loop = true;
     player.play();
   });
-  console.log("item.video from trending :",item.video);
+  // console.log("item.video from trending :",item);
   
   return(
     <Animatable.View
@@ -105,10 +105,12 @@ const Trending = ({posts}) => {
   const [activeItem, setActiveItem] = useState(posts[0]); // Store the string ID
   const [playingItem, setPlayingItem] = useState(null) // for tracking item playing
 
+  // console.log("posts from trending " ,posts );
+  
   // fn provides so we have to {destructure}
 //   getting viewableItems (basially those are 70% visible)
   const viewableItemsChanged = ({viewableItems}) => {
-    console.log("VisiableItems from trending :" , viewableItems);
+    // console.log("VisiableItems from trending :" , viewableItems);
     if (viewableItems.length > 0) {
       setActiveItem(viewableItems[0].key);
       // if playingItem === null and viewableItems[0].key is not matching with playing item 

@@ -1,0 +1,106 @@
+ posts from home : [
+    {
+        "$collectionId": "6759b1530026d6cc718b",
+        "$createdAt": "2024-12-15T16:57:10.792+00:00",
+        "$databaseId": "6759b12f001254fd3395",
+        "$id": "675f0a66003003ea986b",
+        "$permissions": [],
+        "$updatedAt": "2024-12-20T16:53:02.756+00:00",
+        "creator": {
+            "$collectionId": "6759b17e001f5fe71811",
+            "$createdAt": "2024-12-13T11:46:22.669+00:00",
+            "$databaseId": "6759b12f001254fd3395",
+            "$id": "675c1e8d0036546e2c1c",
+            "$permissions": [Array
+            ],
+            "$updatedAt": "2024-12-13T11:46:22.669+00:00",
+            "accountId": "675c1e8b001adf6eafc4",
+            "avatar": "https://cloud.appwrite.io/v1/avatars/initials?project=6759ae410027ed3e1c02",
+            "email": "tausif01092@gmail.com",
+            "username": "tausif0"
+        },
+        "prompt": "Create a motivating AI driven video aimed at inspiring coding enthusiasts with simple language",
+        "thumbnail": "https://i.ibb.co/tJBcX20/Appwrite-video.png",
+        "title": "Get inspired to code",
+        "video": "https://cloud.appwrite.io/v1/storage/buckets/6759b43d0022c6aea369/files/6765a0c7001fe656df6a/view?project=6759ae410027ed3e1c02&project=6759ae410027ed3e1c02&mode=admin"
+    },
+    {
+        "$collectionId": "6759b1530026d6cc718b",
+        "$createdAt": "2024-12-15T17:17:09.048+00:00",
+        "$databaseId": "6759b12f001254fd3395",
+        "$id": "675f0f150003697ec0fa",
+        "$permissions": [],
+        "$updatedAt": "2024-12-20T16:55:44.189+00:00",
+        "creator": {
+            "$collectionId": "6759b17e001f5fe71811",
+            "$createdAt": "2024-12-13T11:46:22.669+00:00",
+            "$databaseId": "6759b12f001254fd3395",
+            "$id": "675c1e8d0036546e2c1c",
+            "$permissions": [Array
+            ],
+            "$updatedAt": "2024-12-13T11:46:22.669+00:00",
+            "accountId": "675c1e8b001adf6eafc4",
+            "avatar": "https://cloud.appwrite.io/v1/avatars/initials?project=6759ae410027ed3e1c02",
+            "email": "tausif01092@gmail.com",
+            "username": "tausif0"
+        },
+        "prompt": "Picture the future of coding with AI. Show AR VR",
+        "thumbnail": "https://i.ibb.co/Xkgk7DY/Video.png",
+        "title": "How AI Shapes Coding Future",
+        "video": "https://cloud.appwrite.io/v1/storage/buckets/6759b43d0022c6aea369/files/6765a181001c68152421/view?project=6759ae410027ed3e1c02&project=6759ae410027ed3e1c02&mode=admin"
+    },
+    {
+        "$collectionId": "6759b1530026d6cc718b",
+        "$createdAt": "2024-12-15T17:18:08.360+00:00",
+        "$databaseId": "6759b12f001254fd3395",
+        "$id": "675f0f500016d91c6531",
+        "$permissions": [],
+        "$updatedAt": "2024-12-20T16:56:02.339+00:00",
+        "creator": {
+            "$collectionId": "6759b17e001f5fe71811",
+            "$createdAt": "2024-12-13T11:46:22.669+00:00",
+            "$databaseId": "6759b12f001254fd3395",
+            "$id": "675c1e8d0036546e2c1c",
+            "$permissions": [Array
+            ],
+            "$updatedAt": "2024-12-13T11:46:22.669+00:00",
+            "accountId": "675c1e8b001adf6eafc4",
+            "avatar": "https://cloud.appwrite.io/v1/avatars/initials?project=6759ae410027ed3e1c02",
+            "email": "tausif01092@gmail.com",
+            "username": "tausif0"
+        },
+        "prompt": "Create a heartwarming video following the travels of dalmatian dog exploring beautiful Italy",
+        "thumbnail": "https://i.ibb.co/CBYzyKh/Video-1.png",
+        "title": "Dalmatian's journey through Italy",
+        "video": "https://cloud.appwrite.io/v1/storage/buckets/6759b43d0022c6aea369/files/6765a17a0008ede75665/view?project=6759ae410027ed3e1c02&project=6759ae410027ed3e1c02&mode=admin"
+    }
+]
+
+Video from vide-card : {
+    "$collectionId": "6759b1530026d6cc718b",
+    "$createdAt": "2024-12-15T16:57:10.792+00:00",
+    "$databaseId": "6759b12f001254fd3395",
+    "$id": "675f0a66003003ea986b",
+    "$permissions": [],
+    "$updatedAt": "2024-12-20T16:53:02.756+00:00",
+    "creator": {
+        "$collectionId": "6759b17e001f5fe71811",
+        "$createdAt": "2024-12-13T11:46:22.669+00:00",
+        "$databaseId": "6759b12f001254fd3395",
+        "$id": "675c1e8d0036546e2c1c",
+        "$permissions": [
+            "read(\"user:675c1e8b001adf6eafc4\")",
+            "update(\"user:675c1e8b001adf6eafc4\")",
+            "delete(\"user:675c1e8b001adf6eafc4\")"
+        ],
+        "$updatedAt": "2024-12-13T11:46:22.669+00:00",
+        "accountId": "675c1e8b001adf6eafc4",
+        "avatar": "https://cloud.appwrite.io/v1/avatars/initials?project=6759ae410027ed3e1c02",
+        "email": "tausif01092@gmail.com",
+        "username": "tausif0"
+    },
+    "prompt": "Create a motivating AI driven video aimed at inspiring coding enthusiasts with simple language",
+    "thumbnail": "https://i.ibb.co/tJBcX20/Appwrite-video.png",
+    "title": "Get inspired to code",
+    "video": "https://cloud.appwrite.io/v1/storage/buckets/6759b43d0022c6aea369/files/6765a0c7001fe656df6a/view?project=6759ae410027ed3e1c02&project=6759ae410027ed3e1c02&mode=admin"
+}

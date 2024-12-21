@@ -46,6 +46,8 @@ console.log("All LatestPosts from Videos collections :",latestPosts);
     },
   ];
 
+  console.log( "posts from home :" ,posts);
+  
   return (
     <SafeAreaView className=' bg-primary flex-1 '>
       <FlatList 
