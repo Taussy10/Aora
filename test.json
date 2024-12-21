@@ -127,3 +127,20 @@ viewableItems [
         "key": "675f0a66003003ea986b"
     }
 ]
+
+user from global-provider: {
+    "$collectionId": "6759b17e001f5fe71811",
+    "$createdAt": "2024-12-13T11:46:22.669+00:00",
+    "$databaseId": "6759b12f001254fd3395",
+    "$id": "675c1e8d0036546e2c1c",
+    "$permissions": [
+        "read(\"user:675c1e8b001adf6eafc4\")",
+        "update(\"user:675c1e8b001adf6eafc4\")",
+        "delete(\"user:675c1e8b001adf6eafc4\")"
+    ],
+    "$updatedAt": "2024-12-13T11:46:22.669+00:00",
+    "accountId": "675c1e8b001adf6eafc4",
+    "avatar": "https://cloud.appwrite.io/v1/avatars/initials?project=6759ae410027ed3e1c02",
+    "email": "tausif01092@gmail.com",
+    "username": "tausif0"
+}

@@ -62,7 +62,8 @@ console.log("All LatestPosts from Videos collections :",latestPosts);
             '>
            <View>
             <Text className=' font-pmedium text-sm  text-gray-100'>Welcome Back</Text>
-            <Text className='text-2xl font-psemibold text-white'>Tausif</Text>
+            {/* make it optional so that if the user in exist in starting then it should show nothing and when data fetch username wil be shown */}
+            <Text className='text-2xl font-psemibold text-white'>{user?.username}</Text>
             </View>  
 
             {/* container for image */}

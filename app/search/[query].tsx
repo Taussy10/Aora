@@ -1,25 +1,23 @@
-import { StyleSheet, Text, View , StatusBar, FlatList , Image, RefreshControl, Alert} from 'react-native'
-import React,{useState , useEffect} from 'react'
+import {  Text, View , FlatList ,} from 'react-native'
+import React,{ useEffect} from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { images } from '~/constants'
 import SearchInput from '~/components/search-input'
-import Trending from '~/components/trending'
 import EmptyState from '~/components/empty-state'
-import { useGlobalContext } from '~/context/global-provider'
-import { getAllPosts, getLatestPosts, getSearchPosts } from '~/appwrite/appwrite'
+import {getSearchPosts } from '~/appwrite/appwrite'
 import useAppwrite from '~/appwrite/use-appwrite'
 import VideoCard from '~/components/video-card'
-import { useFetchData } from '~/learning-section/custom-hook'
 import { useLocalSearchParams } from 'expo-router'
 const Search = () => {
-  const [refreshing, setRefreshing] = useState(false)
-  // useAppwrite(getAllPosts): getAllPost  is just we got params 
 
+
+  // got the all quries getSearchPost function will filter by Query via appwrite
   //  by arrow function firstly refrence will be passed
   //  then after sometime function executes
   // and how much time check use-appwrite file 
  const {data: posts , refetch , isLoading} = useAppwrite(() => getSearchPosts(query))
+//  by this it will exectue gives the return value of it then value will passed to useApppwrite which object so you will get error
 //  const {data: posts , refetch , isLoading} = useAppwrite(() => getSearchPosts(query))
+// for getting the data and always write filename in curly
   const {query} = useLocalSearchParams()
 
   

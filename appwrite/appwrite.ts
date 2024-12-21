@@ -199,3 +199,43 @@ export const  getSearchPosts = async (query:string) => {
 
     
 }
+// for getting user's posts
+export const  getUserPosts = async (userId:string) => {
+    try {
+       const posts = database.listDocuments(
+        config.databseId,
+        config.videosCollectionId ,
+        [
+        Query.equal('creator', userId),
+        // know can we use this below method ? 
+        // Query.orderDesc('$createdAt',  Query.limit(7)),
+      
+        ]
+
+            // If you want to get all the data then no need to use query
+           
+
+            
+    )
+    return (await posts).documents
+    //   return session
+    } catch (error:any) {
+        console.log("getSearchPosts from appwrite.ts: ", error);
+        throw new Error(error)
+    }
+
+    
+}
+export const  signOut = async () => {
+    try {
+     const session =   await account.deleteSession('current');
+
+
+       return session
+    } catch (error:any) {
+        console.log("signout from  appwrite.ts: ", error);
+        throw new Error(error)
+    }
+
+    
+}
