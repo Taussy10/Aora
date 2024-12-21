@@ -182,7 +182,7 @@ console.log("item from glalist" , item );
                 contentFit="cover"
                 // why className isn't working ? expo-video is new tool in expo that's why it
                 // might not supportable by nativewind
-                // className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
+                
                 style={{
                   width: '100%',
                   height: 240,

@@ -22,7 +22,7 @@ className=' w-[270px] h-[216px]'
 <Text className="text-sm font-pmedium text-gray-100">{subtitle}</Text>
         
       <CustomButton 
-      title='Create Vidoe'
+      title='Create Video'
       handlePress={() => router.push("/home")}
        containerStyles="w-full my-5"
 

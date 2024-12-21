@@ -15,7 +15,7 @@
 // use keyword is use for creating custom hook
 
 //   params will be that function(fn)
-  const useAppwrite = (fn:() => void) => {
+  const useAppwrite = (fn) => {
     const [data, setData] = useState([])
     const [isLoading, setIsLoading] = useState(true)
    
