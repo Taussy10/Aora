@@ -104,3 +104,26 @@ Video from vide-card : {
     "title": "Get inspired to code",
     "video": "https://cloud.appwrite.io/v1/storage/buckets/6759b43d0022c6aea369/files/6765a0c7001fe656df6a/view?project=6759ae410027ed3e1c02&project=6759ae410027ed3e1c02&mode=admin"
 }
+
+viewableItems [
+    {
+        "index": 0,
+        "isViewable": true,
+        "item": {
+            "$collectionId": "6759b1530026d6cc718b",
+            "$createdAt": "2024-12-15T16:57:10.792+00:00",
+            "$databaseId": "6759b12f001254fd3395",
+            "$id": "675f0a66003003ea986b",
+            "$permissions": [Array
+            ],
+            "$updatedAt": "2024-12-20T16:53:02.756+00:00",
+            "creator": [Object
+            ],
+            "prompt": "Create a motivating AI driven video aimed at inspiring coding enthusiasts with simple language",
+            "thumbnail": "https://i.ibb.co/tJBcX20/Appwrite-video.png",
+            "title": "Get inspired to code",
+            "video": "https://cloud.appwrite.io/v1/storage/buckets/6759b43d0022c6aea369/files/6765a0c7001fe656df6a/view?project=6759ae410027ed3e1c02&project=6759ae410027ed3e1c02&mode=admin"
+        },
+        "key": "675f0a66003003ea986b"
+    }
+]
