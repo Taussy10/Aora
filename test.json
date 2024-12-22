@@ -156,3 +156,21 @@ user from global-provider: {
     ],
     "canceled": false
 }
+
+uploadFile : {
+    "$createdAt": "2024-12-22T13:38:34.748+00:00",
+    "$id": "676816570006ac611324",
+    "$permissions": [
+        "read(\"user:675c1e8b001adf6eafc4\")",
+        "update(\"user:675c1e8b001adf6eafc4\")",
+        "delete(\"user:675c1e8b001adf6eafc4\")"
+    ],
+    "$updatedAt": "2024-12-22T13:38:45.247+00:00",
+    "bucketId": "6759b43d0022c6aea369",
+    "chunksTotal": 4,
+    "chunksUploaded": 4,
+    "mimeType": "video/mp4",
+    "name": "unwrapped-Taussy10.mp4",
+    "signature": "9c8ff912498dc4f8b5361d5301202f95-4",
+    "sizeOriginal": 19234429
+}

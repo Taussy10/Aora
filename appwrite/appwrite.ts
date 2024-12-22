@@ -1,4 +1,4 @@
-import {Client , Account , ID, Avatars, Databases, Query , } from 'react-native-appwrite'
+import {Client , Account , ID, Avatars, Databases, Query ,Storage } from 'react-native-appwrite'
 import { config } from '~/key'
 
 
@@ -6,6 +6,7 @@ const client = new Client()
 const account = new Account(client)
 const avatar = new Avatars(client)
 const database = new Databases(client)
+const storage = new Storage(client)
 
  client
  .setEndpoint(config.endpoint)
@@ -247,25 +248,168 @@ export const  getUserPosts = async (userId:string) => {
 
 
 
+
+
 // add User posts will be added in posts collecton
-export const  addUserPosts = async (userId:string) => {
-    try {
-       const posts = database.createDocument(
-        config.databseId,
-        config.videosCollectionId ,
-        { },
+// export const  getFilePreview = async (fileId, type) => {
+//     let fileUrl;
 
-    // If you want to get all the data then no need to use query
-           
+//     try {
+//     if (type === 'video') {
 
-            
-    )
-    // return (await posts).documents
-    //   return session
-    } catch (error:any) {
-        console.log("getSearchPosts from appwrite.ts: ", error);
-        throw new Error(error)
-    }
+//          fileUrl = storage.getFilePreview(config.filesBucketId, fileId         )
+//     } else if (type === 'image') {
+//         fileUrl = storage.getFilePreview(config.filesBucketId, fileId , 2000 , 2000      )
+
+//     }else{
+//         throw new Error("Invalid file type")
+
+//     }
+    
+//     if (!fileUrl) throw Error
+
+//     return fileUrl
+//     // return (await posts).documents
+//     //   return session
+//     } catch (error:any) {
+//         console.log("getSearchPosts from appwrite.ts: ", error);
+//         throw new Error(error)
+//     }
 
     
-}
+// }
+
+
+
+// add User posts will be added in posts collecton
+// export const  uploadFile = async (file , type) => {
+//     try {
+//     if (!file) return
+
+
+//     const {mimeType , ...rest} = file;
+//     const asset = {type: mimeType , ...rest}
+
+// try {
+//     // by uploadin we get mimeType(media type) = file media type (jpeg , mp4)
+//     const uploadFile = await storage.createFile( 
+//         config.filesBucketId,
+//         ID.unique(),
+//         asset
+//     )
+// console.log("uploadFile :" ,uploadFile);
+
+//     // const fileUrl = await getFilePreview(uploadFile.$id , type)
+//     // return fileUrl
+//     return  uploadFile
+// } catch (error) {
+//     throw new Error(error)
+    
+// }
+
+//     // return (await posts).documents
+//     //   return session
+//     } catch (error:any) {
+//         console.log("uploadFiles from appwrite.ts: ", error);
+//         throw new Error(error)
+//     }
+
+    
+// }
+
+
+// // For adding in the database , User posts will be added in posts collection
+// export const  createVideo = async (from) => {
+//     try {
+//     const [thumbnailUrl , videoUrl] = await Promise.all(
+//         [
+//             uploadFile(from.thumbnail, 'image'),
+//             uploadFile(from.video, 'video'),
+//         ]
+//        )
+//        console.log("ye" ,thumbnailUrl);
+       
+//     const newPost = await database.createDocument(
+//         config.databseId , config.videosCollectionId , ID.unique(),
+//         {
+//             title: from.title ,
+//             thumbnail: thumbnailUrl,
+//             video: videoUrl ,
+//             prompt: from.prompt,
+//             creator: from.userId
+//         }
+//     )
+//     console.log("newPost :" , newPost);
+    
+//     // return (await posts).documents
+//     //   return session
+//     } catch (error:any) {
+//         console.log("getSearchPosts from appwrite.ts: ", error);
+//         throw new Error(error)
+//     }
+
+    
+// }
+
+export const uploadFile = async (file, type) => {
+    try {
+      if (!file) return;
+  
+      const { mimeType, ...rest } = file;
+      const asset = { type: mimeType, ...rest };
+  
+      try {
+        // Upload the file to storage
+        const uploadFile = await storage.createFile(
+          config.filesBucketId,
+          ID.unique(),
+          asset
+        );
+        console.log("uploadFile:", uploadFile);
+  
+        // Fetch the file metadata (including the actual file URL)
+        const fileMetadata = await storage.getFile(
+          config.filesBucketId,
+          uploadFile.$id
+        );
+        const fileUrl = fileMetadata?.href; // This is the actual file URL
+        return fileUrl;
+      } catch (error) {
+        throw new Error(error);
+      }
+    } catch (error) {
+      console.log("uploadFile error from appwrite.ts: ", error);
+      throw new Error(error);
+    }
+  };
+  
+  export const createVideo = async (from) => {
+    try {
+      // Upload both video and thumbnail and get their actual URLs
+      const [thumbnailUrl, videoUrl] = await Promise.all([
+        uploadFile(from.thumbnail, 'image'),
+        uploadFile(from.video, 'video'),
+      ]);
+      console.log("Thumbnail URL:", thumbnailUrl);
+      console.log("Video URL:", videoUrl);
+  
+      // Create the post in the database
+      const newPost = await database.createDocument(
+        config.databseId,
+        config.videosCollectionId,
+        ID.unique(),
+        {
+          title: from.title,
+          thumbnail: thumbnailUrl, // Use the actual URL for the thumbnail
+          video: videoUrl, // Use the actual URL for the video
+          prompt: from.prompt,
+          creator: from.userId,
+        }
+      );
+      console.log("newPost:", newPost);
+    } catch (error) {
+      console.log("Error in createVideo:", error);
+      throw new Error(error);
+    }
+  };
+  
