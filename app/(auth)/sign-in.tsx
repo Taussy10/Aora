@@ -6,9 +6,10 @@ import FormFiled from '~/components/form-filed'
 import CustomButton from '~/components/custom-button'
 import { Link } from 'expo-router'
 import StatusBarComp from '~/components/status-bar-comp'
-import { signIn } from '~/appwrite/appwrite'
+import { getCurrentUser, signIn } from '~/appwrite/appwrite'
 
 import { useRouter } from 'expo-router'
+import { useGlobalContext } from '~/context/global-provider'
 const SignIn = () => {
   // here we have a object name form that has two keys
   // email and password both are sting 
@@ -16,9 +17,12 @@ const SignIn = () => {
     email: "",
     password: ""
   })
+  // isSubmiting for disabling button
 const [isSubmitting, setIsSubmitting] = useState(false)
 
 const router = useRouter()
+const {isLoggedIn , setIsLoggedIn , user, setUser , loading , setLoading } = useGlobalContext()
+
   // const submit = async() => {
   //         try {
   //           await signIn(form.email , form.password)
@@ -29,15 +33,29 @@ const router = useRouter()
   //         }
   // }
   const submit = async () => {
-    try {
-        if (!form.email || !form.password) {
+    //check wheter all details filled or not 
+    if (!form.email || !form.password) {
           
-            Alert.alert("Error" , "Please fill in all the fields")
-            
-        }
-        setIsSubmitting(true)
+      Alert.alert("Error" , "Please fill in all the fields")
+
+  }
+  // if yeah then enable the button so that user can click 
+  setIsSubmitting(true)
+
+  // then try to run try block
+    try {   
+      // in which signIn function will execute and details in the form 
+      // and will create session
+     await signIn(form.email , form.password)
+    //  then by creating session we will get currently loggedIn user detail
+    // that will be stored result
+        const result = getCurrentUser()
+        // then make IsLoggedIn true that user has logged in
+        setIsLoggedIn(true)
+        // put the user infor in the User varialbe(intially it was null)
+        setUser(result)
+
         // store the result for later use 
-      const result =   await signIn(form.email, form.password)
     //   set it to global state
         router.replace('/home')
     } catch (error: any) {

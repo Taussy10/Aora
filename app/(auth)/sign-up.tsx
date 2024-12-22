@@ -6,6 +6,7 @@ import { images } from '~/constants'
 import FormFiled from '~/components/form-filed'
 import CustomButton from '~/components/custom-button'
 import { createUser } from '~/appwrite/appwrite'
+import { useGlobalContext } from '~/context/global-provider'
 
 const SignUp = () => {
     const [form, setForm] = useState({
@@ -15,6 +16,7 @@ const SignUp = () => {
     })
     const [isSubmitting, setIsSubmitting] = useState(false)
     const router = useRouter()
+  const {setSignUp} = useGlobalContext()
 
     const submit = async () => {
         try {
@@ -25,7 +27,13 @@ const SignUp = () => {
             }
             setIsSubmitting(true)
             // store the result for later use 
-          const result =   await createUser(form.email, form.password, form.username)
+            // createUser function will give user but we don't need why ? 
+            //  cause if you loook at that createUser fun then it will also signup(create session)
+            // and by that you can get user details by getCurrentUser so we are not doing 
+            // we createUser 
+            
+        const result =  await createUser(form.email, form.password, form.username)
+        setSignUp(result)
         //   set it to global state
             router.replace('/home')
         } catch (error: any) {

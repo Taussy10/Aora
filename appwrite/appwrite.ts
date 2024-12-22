@@ -71,6 +71,7 @@ return newUser
     }
     
  }
+
 export const  signIn = async (email:string , password: string) => {
     try {
         // for creating session but why: so that user can get the permission to use site
@@ -86,6 +87,21 @@ export const  signIn = async (email:string , password: string) => {
 
     
 }
+
+export const  signOut = async () => {
+    try {
+     const session =   await account.deleteSession('current');
+
+
+       return session
+    } catch (error:any) {
+        console.log("signout from  appwrite.ts: ", error);
+        throw new Error(error)
+    }
+
+    
+}
+
 export const  getCurrentUser = async () => {
     try {
         // for getting the data of currently logged in user.
@@ -123,6 +139,8 @@ export const  getCurrentUser = async () => {
 
     
 }
+
+
 
 export const  getAllPosts = async () => {
     try {
@@ -206,7 +224,7 @@ export const  getUserPosts = async (userId:string) => {
         config.databseId,
         config.videosCollectionId ,
         [
-        Query.equal('creator', userId),
+        Query.equal('creator', [userId]),
         // know can we use this below method ? 
         // Query.orderDesc('$createdAt',  Query.limit(7)),
       
@@ -226,14 +244,26 @@ export const  getUserPosts = async (userId:string) => {
 
     
 }
-export const  signOut = async () => {
+
+
+
+// add User posts will be added in posts collecton
+export const  addUserPosts = async (userId:string) => {
     try {
-     const session =   await account.deleteSession('current');
+       const posts = database.createDocument(
+        config.databseId,
+        config.videosCollectionId ,
+        { },
 
+    // If you want to get all the data then no need to use query
+           
 
-       return session
+            
+    )
+    // return (await posts).documents
+    //   return session
     } catch (error:any) {
-        console.log("signout from  appwrite.ts: ", error);
+        console.log("getSearchPosts from appwrite.ts: ", error);
         throw new Error(error)
     }
 

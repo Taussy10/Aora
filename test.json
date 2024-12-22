@@ -144,3 +144,15 @@ user from global-provider: {
     "email": "tausif01092@gmail.com",
     "username": "tausif0"
 }
+
+(NOBRIDGE) LOG  reutl {
+    "assets": [
+        {
+            "mimeType": "image/jpeg",
+            "name": "20241221_164020.jpg",
+            "size": 470175,
+            "uri": "file:///data/user/0/host.exp.exponent/cache/DocumentPicker/41a23740-9967-4328-b27b-2efe71ca5444.jpg"
+        }
+    ],
+    "canceled": false
+}

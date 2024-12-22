@@ -9,12 +9,13 @@ const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
 const [isLoggedIn, setIsLoggedIn] = useState(false)
 const [user, setUser] = useState(null)
 const [loading, setLoading] = useState(true)
+const [signUp, setSignUp] = useState(null)
 // here res means response that we got from get CurerentUser()
   useEffect(() => {
     getCurrentUser()
       .then((res) => {
         if (res) {
-            setIsLoggedIn(true);
+          setIsLoggedIn(true);
           setUser(res);
         } else {
             setIsLoggedIn(false);
@@ -29,7 +30,7 @@ const [loading, setLoading] = useState(true)
       });
   }, []);
     return (
-      <GlobalContext.Provider value={{isLoggedIn , setIsLoggedIn , user, setUser , loading , setLoading } }
+      <GlobalContext.Provider value={{isLoggedIn , setIsLoggedIn , user, setUser , loading , setLoading , setSignUp , signUp } }
       >
         {children}
       </GlobalContext.Provider>

@@ -6,7 +6,7 @@ type propsType = {
     title: string,
     value: string,
     placeholder: string,
-    handleChangeText: (e) => void,
+    handleChangeText: (e:any) => void,
     isLoading?: boolean,
     otherStyles?: string; 
     textStyles?: string;  

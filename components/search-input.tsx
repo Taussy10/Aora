@@ -56,9 +56,6 @@ const SearchInput = ({intialQuery}:propsType) => {
          />
        </TouchableOpacity>
       </View>
-
-      
-
   )
 }
 

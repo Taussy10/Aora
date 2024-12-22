@@ -15,14 +15,15 @@ const Home = () => {
   // useAppwrite(getAllPosts): getAllPost  is just we got params 
  const {data: posts , refetch , isLoading} = useAppwrite(getAllPosts)
  const {data: latestPosts } = useAppwrite(getLatestPosts)
-  const {user} = useGlobalContext()
+  const {user , signUp } = useGlobalContext()
 
   
+console.log("createUser details :",signUp);
 console.log("All LatestPosts from Videos collections :",latestPosts);
 
 
-
-  console.log("user :", user);
+ 
+  console.log("user from hoe:", user);
   console.log("Posts :", posts);
    
   const onRefreshing = async () => {
@@ -79,7 +80,7 @@ console.log("All LatestPosts from Videos collections :",latestPosts);
 
           {/* for the input */}
           <View>
-            <SearchInput />
+            <SearchInput  />
           </View>
 
           {/* for the trennding videos */}
