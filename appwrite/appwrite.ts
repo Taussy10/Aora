@@ -351,65 +351,118 @@ export const  getUserPosts = async (userId:string) => {
     
 // }
 
-export const uploadFile = async (file, type) => {
-    try {
-      if (!file) return;
-  
-      const { mimeType, ...rest } = file;
-      const asset = { type: mimeType, ...rest };
-  
-      try {
-        // Upload the file to storage
-        const uploadFile = await storage.createFile(
-          config.filesBucketId,
-          ID.unique(),
-          asset
-        );
-        console.log("uploadFile:", uploadFile);
-  
-        // Fetch the file metadata (including the actual file URL)
-        const fileMetadata = await storage.getFile(
-          config.filesBucketId,
-          uploadFile.$id
-        );
-        const fileUrl = fileMetadata?.href; // This is the actual file URL
-        return fileUrl;
-      } catch (error) {
-        throw new Error(error);
+
+export const uploadFile = async() => {
+  try {
+    
+    const file = await storage.createFile(
+      config.filesBucketId,
+      ID.unique(),
+    // I've to provide assets(thumbnail and video ) here ? how 
+    {
+      thumbnail: '',
+      video: '',
+    }
+    )
+  } catch (error) {
+    console.log("uploadFile error from appwrite.ts: ", error);
+    throw new Error(error);
+  }
+}
+// form param for getting the form data
+export const createPosts = async(from) => {
+  try {
+    const post = await database.createDocument(
+      config.databseId,
+      config.videosCollectionId,
+      ID.unique(), 
+      {
+        title: from.title ,
+        thumbnail: from.thumbnail ,
+        video: from.video ,
+        prompt: from.prompt ,
+        creator: from.userId
+// id of account holder
+
       }
-    } catch (error) {
-      console.log("uploadFile error from appwrite.ts: ", error);
-      throw new Error(error);
-    }
-  };
+    )
+    
+    return post
+  } catch (error) {
+    console.log("uploadFile error from appwrite.ts: ", error);
+    throw new Error(error);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+// export const uploadFile = async (file, type) => {
+//     try {
+//       if (!file) return;
   
-  export const createVideo = async (from) => {
-    try {
-      // Upload both video and thumbnail and get their actual URLs
-      const [thumbnailUrl, videoUrl] = await Promise.all([
-        uploadFile(from.thumbnail, 'image'),
-        uploadFile(from.video, 'video'),
-      ]);
-      console.log("Thumbnail URL:", thumbnailUrl);
-      console.log("Video URL:", videoUrl);
+//       const { mimeType, ...rest } = file;
+//       const asset = { type: mimeType, ...rest };
   
-      // Create the post in the database
-      const newPost = await database.createDocument(
-        config.databseId,
-        config.videosCollectionId,
-        ID.unique(),
-        {
-          title: from.title,
-          thumbnail: thumbnailUrl, // Use the actual URL for the thumbnail
-          video: videoUrl, // Use the actual URL for the video
-          prompt: from.prompt,
-          creator: from.userId,
-        }
-      );
-      console.log("newPost:", newPost);
-    } catch (error) {
-      console.log("Error in createVideo:", error);
-      throw new Error(error);
-    }
-  };
+//       try {
+//         // Upload the file to storage
+//         const uploadFile = await storage.createFile(
+//           config.filesBucketId,
+//           ID.unique(),
+//           asset
+//         );
+//         console.log("uploadFile:", uploadFile);
+  
+//         // Fetch the file metadata (including the actual file URL)
+//         const fileMetadata = await storage.getFile(
+//           config.filesBucketId,
+//           uploadFile.$id
+//         );
+//         const fileUrl = fileMetadata?.href; // This is the actual file URL
+//         return fileUrl;
+//       } catch (error) {
+//         throw new Error(error);
+//       }
+//     } catch (error) {
+//       console.log("uploadFile error from appwrite.ts: ", error);
+//       throw new Error(error);
+//     }
+//   };
+  
+  // export const createVideo = async (from) => {
+  //   try {
+  //     // Upload both video and thumbnail and get their actual URLs
+  //     const [thumbnailUrl, videoUrl] = await Promise.all([
+  //       uploadFile(from.thumbnail, 'image'),
+  //       uploadFile(from.video, 'video'),
+  //     ]);
+  //     console.log("Thumbnail URL:", thumbnailUrl);
+  //     console.log("Video URL:", videoUrl);
+  
+  //     // Create the post in the database
+  //     const newPost = await database.createDocument(
+  //       config.databseId,
+  //       config.videosCollectionId,
+  //       ID.unique(),
+  //       {
+  //         title: from.title,
+  //         thumbnail: thumbnailUrl, // Use the actual URL for the thumbnail
+  //         video: videoUrl, // Use the actual URL for the video
+  //         prompt: from.prompt,
+  //         creator: from.userId,
+  //       }
+  //     );
+  //     console.log("newPost:", newPost);
+  //   } catch (error) {
+  //     console.log("Error in createVideo:", error);
+  //     throw new Error(error);
+  //   }
+  // };
   

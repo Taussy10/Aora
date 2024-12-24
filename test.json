@@ -174,3 +174,23 @@ uploadFile : {
     "signature": "9c8ff912498dc4f8b5361d5301202f95-4",
     "sizeOriginal": 19234429
 }
+
+form {
+    "prompt": "",
+    "thumbnail": null,
+    "title": "",
+    "video": {
+        "assetId": "91382",
+        "base64": null,
+        "duration": 55488,
+        "exif": null,
+        "fileName": "unwrapped-Taussy10.mp4",
+        "fileSize": 19234429,
+        "height": 1080,
+        "mimeType": "video/mp4",
+        "rotation": 0,
+        "type": "video",
+        "uri": "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAora-2447f7b2-1488-463b-9000-7c5149321f3c/ImagePicker/129f3114-2591-4ae8-9a5d-464291e4be1d.mp4",
+        "width": 1080
+    }
+}

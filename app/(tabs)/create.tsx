@@ -7,8 +7,10 @@ import { useVideoPlayer, VideoView } from 'expo-video';
 import CustomButton from '~/components/custom-button'
 import * as DocumentPicker from 'expo-document-picker';
 import { router } from 'expo-router'
-import { createVideo } from '~/appwrite/appwrite'
+import { createPosts, createVideo } from '~/appwrite/appwrite'
 import { useGlobalContext } from '~/context/global-provider'
+import * as ImagePicker from 'expo-image-picker'
+
 const Create = () => {
   const [form, setForm] = useState(
     {
@@ -25,49 +27,64 @@ const Create = () => {
     player.loop = false;
     player.play();
   })
-
 const {user} = useGlobalContext()
 
   const openPicker = async (selectType) => {
- const result =  await DocumentPicker.getDocumentAsync(
-  {
-    type: selectType === 'image' ? ['image/png', 'image/jpg', 'image/jpeg']: 
-    ['video/mp4', 'video/gif' ]
-  })
+ const result =  await ImagePicker.launchImageLibraryAsync({
+  mediaTypes: selectType === "image" ?  ['images']: ['videos'],  //['images', 'videos'],
+  aspect: [4, 3],
+  quality: 1,
+ })
+
+console.log("File: result: " ,result);
 
 
+
+
+
+  
+
+
+  // if result is not cancelled
   if (!result.canceled) {
+    // then will check the media type 
   if (selectType === 'image') {
-    setForm({...form , thumbnail: result.assets[0]})
+  // and will put in from's thumbnail key uri of video 
+  // and why 0 ? read the json data of form in test.json 
+    setForm({...form , thumbnail: result.video[0].uri})
     
   }
   if (selectType === 'video') {
-    setForm({...form , video: result.assets[0]})
+    setForm({...form , video: result.video[0].uri})
     
   }
     
+  // if result canceled after 100mili second show an alerrt
   }else{
     setTimeout(() => {
       Alert.alert('Document picked', JSON.stringify(result , null , 2))
     }, 100);
   }
- console.log("result" ,result);
  
   } 
 
 
   const submit = async() => {
 // ensure that you got all the data
-// if (!form.title || !form.video || !form.thumbnail || !form.prompt) {
-//  return Alert.alert("Error", "Please fill all the details")
+if (!form.title || !form.video || !form.thumbnail || !form.prompt) {
+ return Alert.alert("Error", "Please fill all the details")
   
-// }
+}
 setUploading(true)
 
 try {
-  await createVideo({
+  // here we spread the form deatils then 
+  // add one more key  userId and it's value 
+  await createPosts(
+    {
     ...form , userId: user.$id
-  })
+  }
+)
 
   Alert.alert('Sucess', 'Post uploaded successfully')
   router.push('/home')
