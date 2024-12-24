@@ -51,11 +51,11 @@ console.log("File: result: " ,result);
   if (selectType === 'image') {
   // and will put in from's thumbnail key uri of video 
   // and why 0 ? read the json data of form in test.json 
-    setForm({...form , thumbnail: result.video[0].uri})
+    setForm({...form , thumbnail: result.assets[0].uri})
     
   }
   if (selectType === 'video') {
-    setForm({...form , video: result.video[0].uri})
+    setForm({...form , video: result.assets[0].uri})
     
   }
     
@@ -71,20 +71,18 @@ console.log("File: result: " ,result);
 
   const submit = async() => {
 // ensure that you got all the data
-if (!form.title || !form.video || !form.thumbnail || !form.prompt) {
- return Alert.alert("Error", "Please fill all the details")
+// if (!form.title || !form.video || !form.thumbnail || !form.prompt) {
+//  return Alert.alert("Error", "Please fill all the details")
   
-}
+// }
 setUploading(true)
 
 try {
   // here we spread the form deatils then 
   // add one more key  userId and it's value 
-  await createPosts(
-    {
+  await createPosts({
     ...form , userId: user.$id
-  }
-)
+  })
 
   Alert.alert('Sucess', 'Post uploaded successfully')
   router.push('/home')
@@ -164,7 +162,7 @@ try {
             <TouchableOpacity onPress={() => openPicker("image")}>
               {form.thumbnail ? (
                 <Image
-                  source={{ uri: form.thumbnail.uri }}
+                  source={{ uri: form.thumbnail }}
                   resizeMode="cover"
                   className="w-full h-64 rounded-2xl"
                 />

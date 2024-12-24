@@ -54,7 +54,7 @@ isPlaying ? (
     // <Text className=' text-white'> Playing</Text>
     <VideoView
      contentFit= 'cover'
-    
+     
     // why className isn't working ? expo-video is new tool in expo that's why it 
     // might not supportable by nativewind 
     // className="w-52 h-72 rounded-[33px] mt-3 bg-white/10"
@@ -63,7 +63,7 @@ isPlaying ? (
       height: 288,
       borderRadius: 27
     }}
-    nativeControls={true}
+    nativeControls={false}
    allowsFullscreen 
    allowsPictureInPicture
    startsPictureInPictureAutomatically
