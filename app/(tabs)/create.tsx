@@ -85,7 +85,7 @@ try {
   })
 
   Alert.alert('Sucess', 'Post uploaded successfully')
-  router.push('/home')
+  router.push('/create')
 } catch (error:any) {
  Alert.alert('Error', error.message)
   throw new Error(error.message)

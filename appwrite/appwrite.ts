@@ -361,42 +361,69 @@ export const  getUserPosts = async (userId:string) => {
 
 // here we passed two params. why ?
 // export const uploadFile = async(file , type) => {
-export const uploadFile = async() => {
+// export const uploadFile = async(file , type) => {
 
 // if(!file) return;
+// console.log("File :",file);
 
-// how are getting asset data ?
-// basically  createPosts file we send the file == form.thumbnail
-// so if you console the thumbnail hen you will it's data
+// // how are getting asset data ?
+// // basically  createPosts file we send the file == form.thumbnail
+// // so if you console the thumbnail hen you will it's data
+// const asset = {
+//       name: file.fileName ,
+//       type: file.type ,
+//       size: file.fileSize  ,
+//       uri: file.uri  ,
+//     }
 
-
-  try {
-    const uploadedfile = await storage.createFile(
-      config.filesBucketId,
-      ID.unique(),
-      //  {
-      //   name: file.fileName ,
-      //   type: file.type ,
-      //   size: file.fileSize  ,
-      //   uri: file.uri  ,
-      // },
-       {
-        name: "file.fileName" ,
-        type: 'image' ,
-        size: 22  ,
-        uri: "file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540anonymous%252FAora-2447f7b2-1488-463b-9000-7c5149321f3c/ImagePicker/c06fecaf-e183-4240-9072-612ba12c35cf.mp4"  ,
-      },        
-    // I've to provide assets(thumbnail and video ) here ? how 
-    )
-    console.log("uploadFile :",uploadedfile);
+//   try {
+//     const uploadedfile = await storage.createFile(
+//       config.filesBucketId,
+//       ID.unique(),
+//       asset
+      
+         
+//     // I've to provide assets(thumbnail and video ) here ? how 
+//     )
     
-    // console.log("File :" ,file);
-    return uploadedfile
-  } catch (error) {
-    console.log("uploadFile error from appwrite.ts: ", error);
-    throw new Error(error);
-  }
-}
+//     // console.log("File :" ,file);
+//     return uploadedfile
+//   } catch (error) {
+//     console.log("uploadFile error from appwrite.ts: ", error);
+//     throw new Error(error);
+//   }
+// }
+
+
+
+export const uploadFile = async (file, type) => {
+    if (!file) {
+      console.error("No file provided for upload.");
+      return;
+    }
+  
+    const asset = {
+      name: file.fileName,
+      type: file.type,
+      size: file.fileSize,
+      uri: file.uri,
+    };
+  
+    try {
+      const uploadedFile = await storage.createFile(
+        config.filesBucketId,
+        ID.unique(),
+        asset,
+      );
+  
+      console.log("File uploaded successfully:", uploadedFile);
+      return uploadedFile;
+    } catch (error) {
+      console.error("uploadFile error:", error.message || error);
+      throw error;
+    }
+  };
+  
 // params is for getting data frm form (in create.tsx file )
 
 export const createPosts = async(from ) => {
@@ -407,12 +434,10 @@ export const createPosts = async(from ) => {
     // async function at same tim 
     // both upload file will give a promise object and from where we are destrucuting the varilbe
     // also we passed the params for sending values to uploadFile function 
-    // const [thumbnailUrl , videoUrl] = await Promise.all([
-    //   uploadFile(from.thumbnail , 'image'),
-    //   uploadFile(from.video , 'video'),
-
-    // ])
-    await uploadFile()
+    const [thumbnailUrl , videoUrl] = await Promise.all([
+      uploadFile(from.thumbnail , 'image'),
+      uploadFile(from.video , 'video'),
+    ])
     // console.log("URLS:" ,thumbnailUrl , videoUrl);
     
     const post = await database.createDocument(
@@ -427,14 +452,6 @@ export const createPosts = async(from ) => {
         creator: from.userId
 // id of account holder
       }
-//       {
-//         title: from.title ,
-//         thumbnail: thumbnailUrl ,
-//         video: videoUrl ,
-//         prompt: from.prompt ,
-//         creator: from.userId
-// // id of account holder
-//       }
     )
     
     return post

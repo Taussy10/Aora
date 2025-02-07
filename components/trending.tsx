@@ -1,5 +1,5 @@
 import { FlatList, ImageBackground, StyleSheet, Text, Image , TouchableOpacity, View, Dimensions } from 'react-native'
-import React,{useState} from 'react'
+import React,{useState , useMemo} from 'react'
 import * as Animatable from 'react-native-animatable';
 import { icons } from '~/constants';
 import { useEvent } from 'expo';
@@ -119,10 +119,11 @@ const Trending = ({posts}) => {
       }
     }
     
-   
-    
-
   }
+  const viewabilityConfig = useMemo(() => ({
+    itemVisiblePercentThreshold: 70,
+    waitForInteraction: true,
+  }), []);
   return (
  <FlatList
  data={posts}
@@ -131,10 +132,8 @@ const Trending = ({posts}) => {
 //  keyExtractor={(item) => item.$id }
  keyExtractor={(item) => item.$id }
 horizontal={true}
-onViewableItemsChanged={viewableItemsChanged}
-viewabilityConfig={{
-  itemVisiblePercentThreshold: 70 // if item is 70% then count it as Viewable item otherwise  it's a non-Viewable
-}}
+onViewableItemsChanged={viewabilityConfig}
+viewabilityConfig={viewabilityConfig}
 contentOffset={{x:170 ,y: 0}}
  renderItem={({item}) => (
   // in this we  also we can create comps
